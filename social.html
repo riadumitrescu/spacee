@@ -6,6 +6,11 @@
     <title>Social - Space-Themed Landing Page</title>
     <link rel="stylesheet" href="public/css/styles.css">
     <link rel="stylesheet" href="public/css/social.css">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Preload critical SVG images -->
+    <link rel="preload" href="public/images/icon_twitter.svg" as="image" type="image/svg+xml">
+    <link rel="preload" href="public/images/icon_instagram.svg" as="image" type="image/svg+xml">
+    <link rel="preload" href="public/images/icon_discord.svg" as="image" type="image/svg+xml">
     <script type="importmap">
         {
             "imports": {
@@ -14,12 +19,64 @@
             }
         }
     </script>
+    <style>
+        /* Inline critical CSS to ensure icons display correctly */
+        .social-link img {
+            display: block !important;
+            width: 40px !important;
+            height: 40px !important;
+            object-fit: contain !important;
+        }
+        .icon-wrapper {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 80px !important;
+            height: 80px !important;
+            background: rgba(255, 255, 255, 0.15) !important;
+            border-radius: 50% !important;
+            padding: 15px !important;
+            margin: 0 auto !important;
+        }
+        .social-links {
+            display: flex !important;
+            flex-direction: row !important;
+            justify-content: center !important;
+            gap: 2.5rem !important;
+            width: 100% !important;
+            margin: 0 auto 2rem auto !important;
+        }
+        .social-link {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 1rem !important;
+        }
+        .back-link {
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        .social-content {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            height: 100vh !important;
+            max-width: none !important;
+        }
+    </style>
 </head>
 <body>
-    <div class="scene-container">
+    <div class="scene-container entrance-animation">
         <!-- Background layers -->
         <div class="background-layer"></div>
         <div id="three-container"></div>
+        
+        <!-- Page Transitions -->
+        <div class="page-transition" id="rocket-transition">
+            <div class="rocket-flame"></div>
+        </div>
         
         <!-- Custom cursor -->
         <div id="custom-cursor"></div>
@@ -34,24 +91,31 @@
             <h1>Connect With Us</h1>
             <div class="social-links">
                 <a href="https://twitter.com" class="social-link" target="_blank">
-                    <img src="public/images/icon_twitter.svg" alt="Twitter">
+                    <div class="icon-wrapper">
+                        <img src="public/images/icon_twitter.svg" alt="Twitter" width="40" height="40">
+                    </div>
                     <span>Twitter</span>
                 </a>
                 <a href="https://instagram.com" class="social-link" target="_blank">
-                    <img src="public/images/icon_instagram.svg" alt="Instagram">
+                    <div class="icon-wrapper">
+                        <img src="public/images/icon_instagram.svg" alt="Instagram" width="40" height="40">
+                    </div>
                     <span>Instagram</span>
                 </a>
                 <a href="https://discord.com" class="social-link" target="_blank">
-                    <img src="public/images/icon_discord.svg" alt="Discord">
+                    <div class="icon-wrapper">
+                        <img src="public/images/icon_discord.svg" alt="Discord" width="40" height="40">
+                    </div>
                     <span>Discord</span>
                 </a>
             </div>
-            <a href="index.html" class="back-link">Back to Space</a>
+            <a href="index.html" class="back-link" id="back-to-home" style="opacity: 1; visibility: visible;">Back to Space</a>
         </div>
     </div>
 
     <!-- Main JavaScript -->
     <script type="module" src="public/js/main.js"></script>
     <script type="module" src="public/js/social.js"></script>
+    <script type="module" src="public/js/transitions.js"></script>
 </body>
 </html> 

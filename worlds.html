@@ -6,6 +6,7 @@
     <title>Worlds - Space-Themed Landing Page</title>
     <link rel="stylesheet" href="public/css/styles.css">
     <link rel="stylesheet" href="public/css/worlds.css">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;700&display=swap" rel="stylesheet">
     <script type="importmap">
         {
             "imports": {
@@ -14,12 +15,30 @@
             }
         }
     </script>
+    <style>
+        /* Ensure consistent styling and smoother transitions */
+        .planet {
+            display: block;
+            object-fit: contain;
+        }
+        
+        .entrance-animation {
+            will-change: transform, opacity;
+        }
+        
+        .planet-wrapper {
+            will-change: transform, opacity;
+        }
+    </style>
 </head>
 <body>
-    <div class="scene-container">
+    <div class="scene-container entrance-animation">
         <!-- Background layers -->
         <div class="background-layer galaxy-bg"></div>
         <div id="three-container"></div>
+        
+        <!-- Page Transitions -->
+        <div class="page-transition" id="galaxy-transition"></div>
         
         <!-- Custom cursor -->
         <div id="custom-cursor"></div>
@@ -30,30 +49,31 @@
             
             <div class="planets-container">
                 <div class="planet-wrapper" data-planet="creativity">
-                    <img src="public/images/planet1.svg" alt="Creativity Planet" class="planet">
+                    <img src="public/images/planet1.svg?v=1" alt="Creativity Planet" class="planet">
                     <div class="planet-label">Creativity</div>
                     <div class="planet-tooltip">You unlocked Creativity!</div>
                 </div>
                 
                 <div class="planet-wrapper" data-planet="adventure">
-                    <img src="public/images/planet2.svg" alt="Adventure Planet" class="planet">
+                    <img src="public/images/planet2.svg?v=1" alt="Adventure Planet" class="planet">
                     <div class="planet-label">Adventure</div>
                     <div class="planet-tooltip">You unlocked Adventure!</div>
                 </div>
                 
                 <div class="planet-wrapper" data-planet="knowledge">
-                    <img src="public/images/planet3.svg" alt="Knowledge Planet" class="planet">
+                    <img src="public/images/planet3.svg?v=1" alt="Knowledge Planet" class="planet">
                     <div class="planet-label">Knowledge</div>
                     <div class="planet-tooltip">You unlocked Knowledge!</div>
                 </div>
             </div>
             
-            <a href="index.html" class="back-link">Back to Space</a>
+            <a href="index.html" class="back-link" id="back-to-home">Back to Space</a>
         </div>
     </div>
 
     <!-- Main JavaScript -->
     <script type="module" src="public/js/main.js"></script>
     <script type="module" src="public/js/worlds.js"></script>
+    <script type="module" src="public/js/transitions.js"></script>
 </body>
 </html> 

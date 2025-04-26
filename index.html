@@ -21,6 +21,12 @@
         <div class="background-layer"></div>
         <div id="three-container"></div>
         
+        <!-- Page Transitions -->
+        <div class="page-transition" id="rocket-transition">
+            <div class="rocket-flame"></div>
+        </div>
+        <div class="page-transition" id="galaxy-transition"></div>
+        
         <!-- Custom cursor -->
         <div id="custom-cursor"></div>
         
@@ -33,9 +39,12 @@
         <!-- Interactive elements -->
         <div class="interactive-elements">
             <!-- Rocket - Social -->
-            <div class="rocket-container">
+            <div class="rocket-container" id="rocket-social">
                 <div class="element-label">Connect</div>
                 <img src="public/images/rocket.svg" alt="Rocket" class="rocket">
+                <div class="rocket-flame-container">
+                    <div class="rocket-flame-inner"></div>
+                </div>
                 <div class="social-icons">
                     <a href="#" class="social-icon"><img src="public/images/icon_twitter.svg" alt="Twitter"></a>
                     <a href="#" class="social-icon"><img src="public/images/icon_instagram.svg" alt="Instagram"></a>
@@ -44,7 +53,7 @@
             </div>
             
             <!-- Galaxy - Worlds -->
-            <div class="galaxy-container">
+            <div class="galaxy-container" id="galaxy-worlds">
                 <div class="element-label">Explore</div>
                 <img src="public/images/galaxy.svg" alt="Galaxy" class="galaxy">
             </div>
@@ -53,5 +62,6 @@
 
     <!-- Main JavaScript -->
     <script type="module" src="public/js/main.js"></script>
+    <script type="module" src="public/js/transitions.js"></script>
 </body>
 </html> 

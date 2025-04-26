@@ -403,4 +403,258 @@ a {
 img[src$=".svg"], img[src$=".png"] {
     width: 100%;
     height: auto;
+}
+
+/* Page Transitions */
+.page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Rocket Transition */
+#rocket-transition {
+    background-color: transparent;
+}
+
+#rocket-transition .rocket-flame {
+    position: absolute;
+    width: 0;
+    height: 0;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 200, 100, 0.9) 20%,
+        rgba(255, 140, 50, 0.8) 40%,
+        rgba(255, 100, 50, 0.6) 60%,
+        rgba(255, 50, 0, 0.4) 80%,
+        rgba(100, 0, 0, 0) 100%
+    );
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 1.2s ease-in, height 1.2s ease-in;
+    z-index: 9900;
+}
+
+/* Make flame more intense and fill the screen faster */
+.rocket-flame-grow {
+    width: 400vw !important;
+    height: 400vw !important;
+    opacity: 1 !important;
+    transition: width 2.2s cubic-bezier(0.22, 1, 0.36, 1), height 2.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+/* Flame overlay for transitions */
+.flame-overlay {
+    background: radial-gradient(
+        circle at center,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 200, 100, 0.95) 10%,
+        rgba(255, 120, 50, 0.9) 20%,
+        rgba(255, 80, 30, 0.85) 40%,
+        rgba(200, 50, 10, 0.8) 60%,
+        rgba(150, 30, 10, 0.7) 100%
+    ) !important;
+    animation: flame-pulse 2.5s ease-in-out infinite alternate;
+}
+
+/* Add specific styles for flame exit animation */
+.scene-container .flame-overlay {
+    transition: opacity 0.6s cubic-bezier(0.55, 0.06, 0.68, 0.19) !important; /* Faster exit with different easing */
+}
+
+@keyframes flame-pulse {
+    0% {
+        background: radial-gradient(
+            circle at center,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(255, 200, 100, 0.95) 10%,
+            rgba(255, 120, 50, 0.9) 20%,
+            rgba(255, 80, 30, 0.85) 40%,
+            rgba(200, 50, 10, 0.8) 60%,
+            rgba(150, 30, 10, 0.7) 100%
+        );
+    }
+    100% {
+        background: radial-gradient(
+            circle at center,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(255, 220, 120, 0.95) 10%,
+            rgba(255, 150, 70, 0.9) 20%,
+            rgba(255, 100, 50, 0.85) 40%,
+            rgba(220, 70, 30, 0.8) 60%,
+            rgba(170, 50, 30, 0.7) 100%
+        );
+    }
+}
+
+/* Galaxy Transition */
+#galaxy-transition {
+    background: radial-gradient(
+        circle at center,
+        rgba(100, 50, 200, 0.8) 0%,
+        rgba(70, 30, 150, 0.7) 30%,
+        rgba(40, 10, 100, 0.6) 60%,
+        rgba(10, 5, 30, 0.4) 80%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    transition: opacity 1s ease, visibility 1s ease;
+    transform: scale(0);
+    transform-origin: center center;
+}
+
+/* Animation classes */
+.rocket-animate {
+    animation: rocket-fly 2.5s ease-in forwards;
+}
+
+.rocket-flame-grow {
+    width: 300vw !important;
+    height: 300vw !important;
+    opacity: 1 !important;
+}
+
+.galaxy-animate {
+    animation: galaxy-expand 1.5s ease-in forwards;
+}
+
+@keyframes rocket-fly {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    20% {
+        transform: translate(-30%, -60%) rotate(15deg);
+    }
+    40% {
+        transform: translate(0%, -100%) rotate(25deg);
+    }
+    100% {
+        transform: translate(100%, -200%) rotate(45deg);
+    }
+}
+
+@keyframes galaxy-expand {
+    0% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(25) rotate(90deg);
+    }
+}
+
+/* Rocket flame effect for the actual rocket */
+.rocket-flame-container {
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 40px;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.rocket-flame-inner {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 30px;
+    background: linear-gradient(to bottom, 
+        rgba(255, 255, 255, 0.9) 0%, 
+        rgba(255, 200, 50, 0.8) 20%, 
+        rgba(255, 100, 50, 0.6) 60%, 
+        rgba(255, 50, 0, 0.4) 100%);
+    border-radius: 0 0 10px 10px;
+    animation: flame-flicker 0.5s infinite alternate;
+}
+
+@keyframes flame-flicker {
+    0% {
+        height: 30px;
+        opacity: 0.8;
+    }
+    100% {
+        height: 40px;
+        opacity: 1;
+    }
+}
+
+.rocket-container.transition-active .rocket-flame-inner {
+    animation: flame-grow 1.5s forwards;
+}
+
+@keyframes flame-grow {
+    0% {
+        height: 30px;
+        width: 20px;
+    }
+    20% {
+        height: 60px;
+        width: 30px;
+    }
+    100% {
+        height: 120px;
+        width: 60px;
+    }
+}
+
+/* Make clickable areas clearer */
+.rocket-container, .galaxy-container {
+    cursor: pointer !important;
+}
+
+.transition-active {
+    z-index: 8999;
+    pointer-events: none;
+}
+
+/* Galaxy ripple effect */
+.galaxy-container::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at center,
+        rgba(100, 50, 200, 0.6) 0%,
+        rgba(80, 40, 180, 0.4) 30%,
+        rgba(60, 30, 150, 0.2) 60%,
+        rgba(40, 20, 120, 0) 100%
+    );
+    border-radius: 50%;
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.galaxy-container:hover::after {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 1;
+}
+
+.galaxy-container.transition-active::after {
+    animation: galaxy-ripple 1.5s ease-in forwards;
+}
+
+@keyframes galaxy-ripple {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(30);
+        opacity: 0;
+    }
 } 
