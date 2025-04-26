@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000px" height="1000px" viewBox="0 0 1000 1000" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Sky Background 2</title>
+    <defs>
+        <!-- Radial background gradient -->
+        <radialGradient id="skyGradient" cx="50%" cy="50%" r="70%">
+            <stop offset="0%" stop-color="#2A1B5E" />
+            <stop offset="70%" stop-color="#180A40" />
+            <stop offset="100%" stop-color="#000000" />
+        </radialGradient>
+        
+        <!-- Star glow filter -->
+        <filter id="starGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="1" result="blur" />
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 1  0 1 0 0 1  0 0 1 0 1  0 0 0 18 -7" result="glow" />
+            <feBlend in="SourceGraphic" in2="glow" mode="normal" />
+        </filter>
+        
+        <!-- Galaxy gradient -->
+        <radialGradient id="galaxyGradient" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#AA99FF" stop-opacity="0.2" />
+            <stop offset="50%" stop-color="#7766CC" stop-opacity="0.1" />
+            <stop offset="100%" stop-color="#5544AA" stop-opacity="0" />
+        </radialGradient>
+    </defs>
+    
+    <g id="sky-background" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <!-- Background Fill -->
+        <rect id="bg" fill="url(#skyGradient)" x="0" y="0" width="1000" height="1000"></rect>
+        
+        <!-- Galaxy Arms -->
+        <g id="galaxy-arms" opacity="0.3">
+            <path d="M500,500 C600,400 700,350 800,400 C700,450 600,550 500,500 Z" id="galaxy-arm1" fill="#8866CC"></path>
+            <path d="M500,500 C400,400 300,350 200,400 C300,450 400,550 500,500 Z" id="galaxy-arm2" fill="#8866CC"></path>
+            <path d="M500,500 C400,600 350,700 400,800 C450,700 550,600 500,500 Z" id="galaxy-arm3" fill="#8866CC"></path>
+            <path d="M500,500 C600,600 650,700 600,800 C550,700 450,600 500,500 Z" id="galaxy-arm4" fill="#8866CC"></path>
+        </g>
+        
+        <!-- Galaxy Core -->
+        <circle id="galaxy-core" fill="url(#galaxyGradient)" cx="500" cy="500" r="100"></circle>
+        
+        <!-- Stars (randomly positioned) -->
+        <g id="stars" fill="#FFFFFF" filter="url(#starGlow)">
+            <!-- Large stars -->
+            <circle cx="120" cy="130" r="1.5"></circle>
+            <circle cx="320" cy="180" r="2"></circle>
+            <circle cx="520" cy="80" r="1.8"></circle>
+            <circle cx="720" cy="280" r="1.6"></circle>
+            <circle cx="920" cy="130" r="1.7"></circle>
+            <circle cx="170" cy="330" r="1.8"></circle>
+            <circle cx="270" cy="430" r="1.9"></circle>
+            <circle cx="370" cy="530" r="1.7"></circle>
+            <circle cx="470" cy="630" r="1.6"></circle>
+            <circle cx="570" cy="730" r="1.8"></circle>
+            <circle cx="670" cy="830" r="1.9"></circle>
+            <circle cx="770" cy="930" r="1.7"></circle>
+            <circle cx="870" cy="30" r="1.6"></circle>
+            <circle cx="970" cy="430" r="1.8"></circle>
+            <circle cx="70" cy="530" r="1.9"></circle>
+            <circle cx="420" cy="780" r="2"></circle>
+            <circle cx="620" cy="580" r="1.9"></circle>
+            <circle cx="820" cy="380" r="1.8"></circle>
+            <circle cx="220" cy="680" r="1.7"></circle>
+            
+            <!-- Medium stars -->
+            <circle cx="140" cy="160" r="1"></circle>
+            <circle cx="340" cy="200" r="1.2"></circle>
+            <circle cx="540" cy="100" r="1.1"></circle>
+            <circle cx="740" cy="300" r="1"></circle>
+            <circle cx="940" cy="160" r="1.1"></circle>
+            <circle cx="190" cy="360" r="1.2"></circle>
+            <circle cx="290" cy="460" r="1.1"></circle>
+            <circle cx="390" cy="560" r="1"></circle>
+            <circle cx="490" cy="660" r="1"></circle>
+            <circle cx="590" cy="760" r="1.2"></circle>
+            <circle cx="690" cy="860" r="1.1"></circle>
+            <circle cx="790" cy="960" r="1"></circle>
+            <circle cx="890" cy="60" r="1"></circle>
+            <circle cx="990" cy="460" r="1.2"></circle>
+            <circle cx="90" cy="560" r="1.1"></circle>
+            <circle cx="440" cy="800" r="1.2"></circle>
+            <circle cx="640" cy="600" r="1.1"></circle>
+            <circle cx="840" cy="400" r="1"></circle>
+            <circle cx="240" cy="700" r="1"></circle>
+            
+            <!-- Small stars (more of them) -->
+            <circle cx="160" cy="170" r="0.7"></circle>
+            <circle cx="360" cy="210" r="0.6"></circle>
+            <circle cx="560" cy="110" r="0.7"></circle>
+            <circle cx="760" cy="310" r="0.6"></circle>
+            <circle cx="960" cy="170" r="0.7"></circle>
+            <circle cx="210" cy="370" r="0.6"></circle>
+            <circle cx="310" cy="470" r="0.7"></circle>
+            <circle cx="410" cy="570" r="0.6"></circle>
+            <circle cx="510" cy="670" r="0.6"></circle>
+            <circle cx="610" cy="770" r="0.7"></circle>
+            <circle cx="710" cy="870" r="0.6"></circle>
+            <circle cx="810" cy="970" r="0.7"></circle>
+            <circle cx="910" cy="70" r="0.6"></circle>
+            <circle cx="10" cy="470" r="0.7"></circle>
+            <circle cx="110" cy="570" r="0.6"></circle>
+            <circle cx="460" cy="820" r="0.7"></circle>
+            <circle cx="660" cy="620" r="0.6"></circle>
+            <circle cx="860" cy="420" r="0.7"></circle>
+            <circle cx="260" cy="720" r="0.6"></circle>
+            <circle cx="180" cy="190" r="0.7"></circle>
+            <circle cx="380" cy="230" r="0.6"></circle>
+            <circle cx="580" cy="130" r="0.7"></circle>
+            <circle cx="780" cy="330" r="0.6"></circle>
+            <circle cx="980" cy="190" r="0.7"></circle>
+            <circle cx="230" cy="390" r="0.6"></circle>
+            <circle cx="330" cy="490" r="0.7"></circle>
+            <circle cx="430" cy="590" r="0.6"></circle>
+            <circle cx="530" cy="690" r="0.6"></circle>
+            <circle cx="630" cy="790" r="0.7"></circle>
+            <circle cx="730" cy="890" r="0.6"></circle>
+            <circle cx="830" cy="990" r="0.7"></circle>
+            <circle cx="930" cy="90" r="0.6"></circle>
+            <circle cx="30" cy="490" r="0.7"></circle>
+            <circle cx="130" cy="590" r="0.6"></circle>
+            <circle cx="480" cy="840" r="0.7"></circle>
+            <circle cx="680" cy="640" r="0.6"></circle>
+            <circle cx="880" cy="440" r="0.7"></circle>
+            <circle cx="280" cy="740" r="0.6"></circle>
+        </g>
+        
+        <!-- Dust clouds -->
+        <path d="M400,300 C450,250 500,250 550,300 C600,350 650,350 700,300 C750,250 800,250 850,300 C800,350 750,400 700,400 C650,400 600,350 550,400 C500,450 450,450 400,400 C350,350 350,350 400,300 Z" id="dust1" fill="#AA99FF" opacity="0.1"></path>
+        
+        <path d="M250,600 C300,550 350,550 400,600 C450,650 500,650 550,600 C600,550 650,550 700,600 C650,650 600,700 550,700 C500,700 450,650 400,700 C350,750 300,750 250,700 C200,650 200,650 250,600 Z" id="dust2" fill="#9977EE" opacity="0.1"></path>
+        
+        <path d="M650,800 C700,750 750,750 800,800 C850,850 900,850 950,800 C1000,750 1050,750 1100,800 C1050,850 1000,900 950,900 C900,900 850,850 800,900 C750,950 700,950 650,900 C600,850 600,850 650,800 Z" id="dust3" fill="#8866DD" opacity="0.1"></path>
+        
+        <!-- Distant small galaxies -->
+        <circle id="distant-galaxy1" fill="#CCBBFF" cx="200" cy="200" r="10" opacity="0.2"></circle>
+        <circle id="distant-galaxy2" fill="#BBAAEE" cx="800" cy="700" r="15" opacity="0.2"></circle>
+        <circle id="distant-galaxy3" fill="#AA99DD" cx="300" cy="750" r="12" opacity="0.2"></circle>
+        <circle id="distant-galaxy4" fill="#9988CC" cx="750" cy="150" r="8" opacity="0.2"></circle>
+    </g>
+</svg> 

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300px" height="300px" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Cartoon Galaxy</title>
+    <defs>
+        <!-- Galaxy gradients -->
+        <radialGradient id="galaxyGradient" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#8844FF">
+                <animate attributeName="stop-color" values="#8844FF; #AA66FF; #8844FF" dur="4s" repeatCount="indefinite" />
+            </stop>
+            <stop offset="70%" stop-color="#5522CC">
+                <animate attributeName="stop-color" values="#5522CC; #6633DD; #5522CC" dur="4s" repeatCount="indefinite" />
+            </stop>
+            <stop offset="100%" stop-color="#221133">
+                <animate attributeName="stop-color" values="#221133; #332244; #221133" dur="4s" repeatCount="indefinite" />
+            </stop>
+        </radialGradient>
+        
+        <radialGradient id="coreGradient" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FFFFFF">
+                <animate attributeName="stop-color" values="#FFFFFF; #EEDDFF; #FFFFFF" dur="3s" repeatCount="indefinite" />
+            </stop>
+            <stop offset="70%" stop-color="#CCAAFF">
+                <animate attributeName="stop-color" values="#CCAAFF; #BB99FF; #CCAAFF" dur="3s" repeatCount="indefinite" />
+            </stop>
+            <stop offset="100%" stop-color="#9966FF">
+                <animate attributeName="stop-color" values="#9966FF; #8855EE; #9966FF" dur="3s" repeatCount="indefinite" />
+            </stop>
+        </radialGradient>
+        
+        <!-- Glow effects -->
+        <filter id="galaxyGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0.5  0 1 0 0 0.2  0 0 1 0 1  0 0 0 18 -7" result="glow" />
+            <feBlend in="SourceGraphic" in2="glow" mode="normal" />
+        </filter>
+        
+        <filter id="starGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="1" result="blur" />
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 1  0 1 0 0 1  0 0 1 0 1  0 0 0 18 -7" result="glow" />
+            <feBlend in="SourceGraphic" in2="glow" mode="normal" />
+        </filter>
+    </defs>
+    
+    <g id="galaxy-group" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <!-- Galaxy Base -->
+        <ellipse id="galaxy-base" fill="url(#galaxyGradient)" cx="150" cy="150" rx="120" ry="80" filter="url(#galaxyGlow)">
+            <animateTransform attributeName="transform" 
+                              type="rotate" 
+                              from="0 150 150" 
+                              to="360 150 150" 
+                              dur="120s" 
+                              repeatCount="indefinite" />
+        </ellipse>
+        
+        <!-- Galaxy Arms -->
+        <path d="M150,150 C190,170 230,180 270,160 C230,210 170,230 150,150 Z" id="arm1" fill="#6633CC" opacity="0.6">
+            <animateTransform attributeName="transform" 
+                              type="rotate" 
+                              from="0 150 150" 
+                              to="360 150 150" 
+                              dur="120s" 
+                              repeatCount="indefinite" />
+        </path>
+        
+        <path d="M150,150 C110,130 70,120 30,140 C70,90 130,70 150,150 Z" id="arm2" fill="#6633CC" opacity="0.6">
+            <animateTransform attributeName="transform" 
+                              type="rotate" 
+                              from="0 150 150" 
+                              to="360 150 150" 
+                              dur="120s" 
+                              repeatCount="indefinite" />
+        </path>
+        
+        <path d="M150,150 C130,110 120,70 140,30 C90,70 70,130 150,150 Z" id="arm3" fill="#6633CC" opacity="0.6">
+            <animateTransform attributeName="transform" 
+                              type="rotate" 
+                              from="0 150 150" 
+                              to="360 150 150" 
+                              dur="120s" 
+                              repeatCount="indefinite" />
+        </path>
+        
+        <path d="M150,150 C170,190 180,230 160,270 C210,230 230,170 150,150 Z" id="arm4" fill="#6633CC" opacity="0.6">
+            <animateTransform attributeName="transform" 
+                              type="rotate" 
+                              from="0 150 150" 
+                              to="360 150 150" 
+                              dur="120s" 
+                              repeatCount="indefinite" />
+        </path>
+        
+        <!-- Galaxy Core -->
+        <circle id="galaxy-core" fill="url(#coreGradient)" cx="150" cy="150" r="30" filter="url(#galaxyGlow)">
+            <animate attributeName="r" values="30;32;30" dur="4s" repeatCount="indefinite" />
+        </circle>
+        
+        <!-- Stars -->
+        <g id="stars">
+            <!-- Arm 1 Stars -->
+            <circle id="star1" fill="#FFFFFF" cx="190" cy="170" r="2" filter="url(#starGlow)">
+                <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite" />
+                <animateTransform attributeName="transform" 
+                                  type="rotate" 
+                                  from="0 150 150" 
+                                  to="360 150 150" 
+                                  dur="120s" 
+                                  repeatCount="indefinite" />
+            </circle>
+            
+            <circle id="star2" fill="#FFFFFF" cx="220" cy="175" r="1.5" filter="url(#starGlow)">
+                <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite" />
+                <animateTransform attributeName="transform" 
+                                  type="rotate" 
+                                  from="0 150 150" 
+                                  to="360 150 150" 
+                                  dur="120s" 
+                                  repeatCount="indefinite" />
+            </circle>
+            
+            <!-- Arm 2 Stars -->
+            <circle id="star3" fill="#FFFFFF" cx="110" cy="130" r="2" filter="url(#starGlow)">
+                <animate attributeName="opacity" values="1;0.5;1" dur="2.5s" repeatCount="indefinite" />
+                <animateTransform attributeName="transform" 
+                                  type="rotate" 
+                                  from="0 150 150" 
+                                  to="360 150 150" 
+                                  dur="120s" 
+                                  repeatCount="indefinite" />
+            </circle>
+            
+            <circle id="star4" fill="#FFFFFF" cx="80" cy="125" r="1.5" filter="url(#starGlow)">
+                <animate attributeName="opacity" values="0.5;1;0.5" dur="3.5s" repeatCount="indefinite" />
+                <animateTransform attributeName="transform" 
+                                  type="rotate" 
+                                  from="0 150 150" 
+                                  to="360 150 150" 
+                                  dur="120s" 
+                                  repeatCount="indefinite" />
+            </circle>
+            
+            <!-- Arm 3 Stars -->
+            <circle id="star5" fill="#FFFFFF" cx="130" cy="110" r="2" filter="url(#starGlow)">
+                <animate attributeName="opacity" values="1;0.5;1" dur="3s" repeatCount="indefinite" />
+                <animateTransform attributeName="transform" 
+                                  type="rotate" 
+                                  from="0 150 150" 
+                                  to="360 150 150" 
+                                  dur="120s" 
+                                  repeatCount="indefinite" />
+            </circle>
+            
+            <circle id="star6" fill="#FFFFFF" cx="125" cy="80" r="1.5" filter="url(#starGlow)">
+                <animate attributeName="opacity" values="0.5;1;0.5" dur="4s" repeatCount="indefinite" />
+                <animateTransform attributeName="transform" 
+                                  type="rotate" 
+                                  from="0 150 150" 
+                                  to="360 150 150" 
+                                  dur="120s" 
+                                  repeatCount="indefinite" />
+            </circle>
+            
+            <!-- Arm 4 Stars -->
+            <circle id="star7" fill="#FFFFFF" cx="170" cy="190" r="2" filter="url(#starGlow)">
+                <animate attributeName="opacity" values="1;0.5;1" dur="2.2s" repeatCount="indefinite" />
+                <animateTransform attributeName="transform" 
+                                  type="rotate" 
+                                  from="0 150 150" 
+                                  to="360 150 150" 
+                                  dur="120s" 
+                                  repeatCount="indefinite" />
+            </circle>
+            
+            <circle id="star8" fill="#FFFFFF" cx="175" cy="220" r="1.5" filter="url(#starGlow)">
+                <animate attributeName="opacity" values="0.5;1;0.5" dur="3.2s" repeatCount="indefinite" />
+                <animateTransform attributeName="transform" 
+                                  type="rotate" 
+                                  from="0 150 150" 
+                                  to="360 150 150" 
+                                  dur="120s" 
+                                  repeatCount="indefinite" />
+            </circle>
+        </g>
+    </g>
+</svg> 

@@ -1,0 +1,46 @@
+# Space-Themed Landing Page — "Cartoon Galaxy UX" Mandates
+
+## Design Mandates
+- Playful, immersive experience with cartoon elements
+- Space theme with stars, planets, galaxies and cosmic elements
+- Glowing effects for interactive elements
+- Colorful but not overwhelming palette (purples, blues, pinks)
+- Subtle animations for background elements
+- Responsive design that works on mobile and desktop
+- Custom cursor that fits the space theme (cat astronaut)
+- Cohesive visual language across all pages
+- Twinkling stars and pulsing light effects in background 
+- Floating animations for interactive elements
+- Subtle particle effects to create depth and dimension
+
+## Technical Mandates
+- HTML/CSS for structure and styling
+- JavaScript for interactivity
+- Three.js for background effects and animations
+- Deployment via Vercel
+- Responsive design (mobile, tablet, desktop)
+- Performance optimization for animations
+- Cross-browser compatibility
+- Accessible design principles
+
+## Feature Mandates
+- Home page with interactive elements
+- Social media links page
+- Worlds/planets exploration page
+- Custom navigation between pages
+- Dynamic visual feedback on user interaction
+- Animated background with parallax effects
+- Floating elements that respond to cursor movement
+- Glowing effects on hover states
+- Visual transitions between pages
+- Sound effects for interactions (optional, user-triggered)
+
+## Asset Mandates
+- Cartoon style background with stars and cosmic elements
+- Planet icons with unique characteristics
+- Social media icons with space theme styling
+- Custom cursor (cat astronaut)
+- Rocket ship for navigation
+- Galaxy visualization
+- Particle effects for atmosphere
+- Light effects for interactive elements 

@@ -1,0 +1,94 @@
+/* Social Page Styles */
+
+/* Parked Rocket */
+.parked-rocket {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 3;
+}
+
+.parked-rocket .rocket {
+    width: 80px;
+    height: auto;
+    transform: rotate(-15deg);
+    transition: transform 0.3s ease;
+}
+
+.parked-rocket:hover .rocket {
+    transform: rotate(0deg) scale(1.1);
+}
+
+/* Social Content */
+.social-content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.social-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 50px;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.social-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.social-link:hover {
+    transform: translateY(-10px);
+}
+
+.social-link img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.social-link span {
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+/* Animations */
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.3),
+                     0 0 10px rgba(255, 255, 255, 0.3);
+    }
+    to {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+                     0 0 20px rgba(255, 255, 255, 0.5),
+                     0 0 30px rgba(128, 0, 255, 0.5);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+} 

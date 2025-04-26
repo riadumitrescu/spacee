@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space-Themed Landing Page</title>
+    <link rel="stylesheet" href="public/css/styles.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.161.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.161.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="scene-container">
+        <!-- Background layers -->
+        <div class="background-layer"></div>
+        <div id="three-container"></div>
+        
+        <!-- Custom cursor -->
+        <div id="custom-cursor"></div>
+        
+        <!-- Interactive elements -->
+        <div class="interactive-elements">
+            <!-- Rocket - Social -->
+            <div class="rocket-container">
+                <img src="public/images/rocket.svg" alt="Rocket" class="rocket">
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><img src="public/images/icon_twitter.svg" alt="Twitter"></a>
+                    <a href="#" class="social-icon"><img src="public/images/icon_instagram.svg" alt="Instagram"></a>
+                    <a href="#" class="social-icon"><img src="public/images/icon_discord.svg" alt="Discord"></a>
+                </div>
+            </div>
+            
+            <!-- Galaxy - Worlds -->
+            <div class="galaxy-container">
+                <img src="public/images/galaxy.svg" alt="Galaxy" class="galaxy">
+            </div>
+        </div>
+    </div>
+
+    <!-- Main JavaScript -->
+    <script type="module" src="public/js/main.js"></script>
+</body>
+</html> 

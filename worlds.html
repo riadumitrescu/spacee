@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worlds - Space-Themed Landing Page</title>
+    <link rel="stylesheet" href="public/css/styles.css">
+    <link rel="stylesheet" href="public/css/worlds.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.161.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.161.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="scene-container">
+        <!-- Background layers -->
+        <div class="background-layer galaxy-bg"></div>
+        <div id="three-container"></div>
+        
+        <!-- Custom cursor -->
+        <div id="custom-cursor"></div>
+        
+        <!-- Worlds content -->
+        <div class="worlds-content">
+            <h1>Explore Our Worlds</h1>
+            
+            <div class="planets-container">
+                <div class="planet-wrapper" data-planet="creativity">
+                    <img src="public/images/planet1.svg" alt="Creativity Planet" class="planet">
+                    <div class="planet-label">Creativity</div>
+                    <div class="planet-tooltip">You unlocked Creativity!</div>
+                </div>
+                
+                <div class="planet-wrapper" data-planet="adventure">
+                    <img src="public/images/planet2.svg" alt="Adventure Planet" class="planet">
+                    <div class="planet-label">Adventure</div>
+                    <div class="planet-tooltip">You unlocked Adventure!</div>
+                </div>
+                
+                <div class="planet-wrapper" data-planet="knowledge">
+                    <img src="public/images/planet3.svg" alt="Knowledge Planet" class="planet">
+                    <div class="planet-label">Knowledge</div>
+                    <div class="planet-tooltip">You unlocked Knowledge!</div>
+                </div>
+            </div>
+            
+            <a href="index.html" class="back-link">Back to Space</a>
+        </div>
+    </div>
+
+    <!-- Main JavaScript -->
+    <script type="module" src="public/js/main.js"></script>
+    <script type="module" src="public/js/worlds.js"></script>
+</body>
+</html> 

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Discord Icon</title>
+    <defs>
+        <!-- Glow effect -->
+        <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="2" result="blur" />
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="glow" />
+            <feBlend in="SourceGraphic" in2="glow" mode="normal" />
+        </filter>
+    </defs>
+    
+    <g id="discord-icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <!-- Background Circle -->
+        <circle id="bg-circle" fill="#7289DA" cx="20" cy="20" r="18" filter="url(#glow)"></circle>
+        
+        <!-- Discord Logo -->
+        <path d="M29,13 C29,13 26.5,11 23.5,11 L23,11.5 C26,12.5 27.5,14 27.5,14 C25.5,13 23.5,12.5 21.5,12.5 C19.5,12.5 17.5,13 15.5,14 C15.5,14 17,12.5 20,11.5 L19.5,11 C16.5,11 14,13 14,13 C14,13 11,17.5 11,23 C11,23 13,26 17.5,26 C17.5,26 18,25 18.5,24 C16,23.5 15,22 15,22 C15,22 15.5,22.5 16.5,23 L17,23 C17,23 17.5,23 18,23.5 C19,24 20,24 21.5,24 C23,24 24.5,24 25.5,23.5 C26,23 26.5,23 26.5,23 L27,23 C28,22.5 28.5,22 28.5,22 C28.5,22 27.5,23.5 25,24 C25.5,25 26,26 26,26 C30.5,26 32.5,23 32.5,23 C32.5,17.5 29,13 29,13 Z M17.5,21 C16.5,21 16,20 16,19 C16,18 16.5,17 17.5,17 C18.5,17 19,18 19,19 C19,20 18.5,21 17.5,21 Z M25.5,21 C24.5,21 24,20 24,19 C24,18 24.5,17 25.5,17 C26.5,17 27,18 27,19 C27,20 26.5,21 25.5,21 Z" id="discord-shape" fill="#FFFFFF"></path>
+        
+        <!-- Sparkles -->
+        <circle id="sparkle1" fill="#FFFFFF" cx="10" cy="10" r="1"></circle>
+        <circle id="sparkle2" fill="#FFFFFF" cx="30" cy="8" r="1.5"></circle>
+        <circle id="sparkle3" fill="#FFFFFF" cx="8" cy="30" r="1"></circle>
+        <circle id="sparkle4" fill="#FFFFFF" cx="32" cy="30" r="1"></circle>
+    </g>
+</svg> 

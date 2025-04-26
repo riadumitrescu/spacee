@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120px" height="200px" viewBox="0 0 120 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Cartoon Rocket</title>
+    <defs>
+        <!-- Flame Animation -->
+        <radialGradient id="flameGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+            <stop offset="0%" stop-color="#FFFF00">
+                <animate attributeName="stop-color" values="#FFFF00; #FF9900; #FFFF00" dur="1.5s" repeatCount="indefinite" />
+            </stop>
+            <stop offset="70%" stop-color="#FF9900">
+                <animate attributeName="stop-color" values="#FF9900; #FF5500; #FF9900" dur="1.5s" repeatCount="indefinite" />
+            </stop>
+            <stop offset="100%" stop-color="#FF5500">
+                <animate attributeName="stop-color" values="#FF5500; #FF0000; #FF5500" dur="1.5s" repeatCount="indefinite" />
+            </stop>
+        </radialGradient>
+        
+        <!-- Glow effects -->
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="glow" />
+            <feBlend in="SourceGraphic" in2="glow" mode="normal" />
+        </filter>
+    </defs>
+    
+    <g id="rocket-group" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <!-- Rocket Flames -->
+        <g id="flames" transform="translate(35, 150)">
+            <!-- Main Flame -->
+            <path d="M25,0 C25,0 45,30 45,45 C45,65 5,65 5,45 C5,30 25,0 25,0 Z" fill="url(#flameGradient)">
+                <animate attributeName="d" 
+                         values="M25,0 C25,0 45,30 45,45 C45,65 5,65 5,45 C5,30 25,0 25,0 Z;
+                                 M25,0 C25,0 40,35 40,50 C40,70 10,70 10,50 C10,35 25,0 25,0 Z;
+                                 M25,0 C25,0 45,30 45,45 C45,65 5,65 5,45 C5,30 25,0 25,0 Z" 
+                         dur="0.8s" 
+                         repeatCount="indefinite" />
+            </path>
+            
+            <!-- Small Flames -->
+            <path d="M15,10 C15,10 5,30 5,35 C5,45 25,45 25,35 C25,30 15,10 15,10 Z" fill="#FFFF00" opacity="0.7">
+                <animate attributeName="d" 
+                         values="M15,10 C15,10 5,30 5,35 C5,45 25,45 25,35 C25,30 15,10 15,10 Z;
+                                 M15,10 C15,10 0,25 0,30 C0,40 30,40 30,30 C30,25 15,10 15,10 Z;
+                                 M15,10 C15,10 5,30 5,35 C5,45 25,45 25,35 C25,30 15,10 15,10 Z" 
+                         dur="1s" 
+                         repeatCount="indefinite" />
+            </path>
+            
+            <path d="M35,10 C35,10 45,30 45,35 C45,45 25,45 25,35 C25,30 35,10 35,10 Z" fill="#FFFF00" opacity="0.7">
+                <animate attributeName="d" 
+                         values="M35,10 C35,10 45,30 45,35 C45,45 25,45 25,35 C25,30 35,10 35,10 Z;
+                                 M35,10 C35,10 50,25 50,30 C50,40 20,40 20,30 C20,25 35,10 35,10 Z;
+                                 M35,10 C35,10 45,30 45,35 C45,45 25,45 25,35 C25,30 35,10 35,10 Z" 
+                         dur="1.2s" 
+                         repeatCount="indefinite" />
+            </path>
+        </g>
+        
+        <!-- Rocket Body -->
+        <ellipse id="rocket-bottom" fill="#8866CC" cx="60" cy="150" rx="30" ry="10"></ellipse>
+        <rect id="rocket-body" fill="#8866CC" x="30" y="70" width="60" height="80" rx="30"></rect>
+        
+        <!-- Rocket Top -->
+        <path d="M60,0 L90,70 L30,70 Z" id="rocket-top" fill="#9977DD"></path>
+        
+        <!-- Window -->
+        <circle id="window" fill="#CCFFFF" cx="60" cy="100" r="15" filter="url(#glow)"></circle>
+        <circle id="window-inner" fill="#99CCFF" cx="60" cy="100" r="10"></circle>
+        
+        <!-- Rocket Fins -->
+        <path d="M30,130 L10,150 L10,120 Z" id="fin-left" fill="#9977DD"></path>
+        <path d="M90,130 L110,150 L110,120 Z" id="fin-right" fill="#9977DD"></path>
+        
+        <!-- Stars inside window (alien) -->
+        <circle id="star1" fill="#FFFFFF" cx="55" cy="95" r="2">
+            <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite" />
+        </circle>
+        <circle id="star2" fill="#FFFFFF" cx="65" cy="105" r="2">
+            <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" />
+        </circle>
+        <circle id="star3" fill="#FFFFFF" cx="60" cy="100" r="1">
+            <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite" />
+        </circle>
+    </g>
+</svg> 

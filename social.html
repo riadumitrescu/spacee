@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social - Space-Themed Landing Page</title>
+    <link rel="stylesheet" href="public/css/styles.css">
+    <link rel="stylesheet" href="public/css/social.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.161.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.161.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="scene-container">
+        <!-- Background layers -->
+        <div class="background-layer"></div>
+        <div id="three-container"></div>
+        
+        <!-- Custom cursor -->
+        <div id="custom-cursor"></div>
+        
+        <!-- Parked rocket -->
+        <div class="parked-rocket">
+            <img src="public/images/rocket.svg" alt="Rocket" class="rocket">
+        </div>
+        
+        <!-- Social content -->
+        <div class="social-content">
+            <h1>Connect With Us</h1>
+            <div class="social-links">
+                <a href="https://twitter.com" class="social-link" target="_blank">
+                    <img src="public/images/icon_twitter.svg" alt="Twitter">
+                    <span>Twitter</span>
+                </a>
+                <a href="https://instagram.com" class="social-link" target="_blank">
+                    <img src="public/images/icon_instagram.svg" alt="Instagram">
+                    <span>Instagram</span>
+                </a>
+                <a href="https://discord.com" class="social-link" target="_blank">
+                    <img src="public/images/icon_discord.svg" alt="Discord">
+                    <span>Discord</span>
+                </a>
+            </div>
+            <a href="index.html" class="back-link">Back to Space</a>
+        </div>
+    </div>
+
+    <!-- Main JavaScript -->
+    <script type="module" src="public/js/main.js"></script>
+    <script type="module" src="public/js/social.js"></script>
+</body>
+</html> 
