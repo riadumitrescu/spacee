@@ -121,4 +121,27 @@ Why it was changed:
 What part of the app it affects:
 - Deployment configuration
 - Asset loading in production
-- Overall appearance on Vercel 
+- Overall appearance on Vercel
+
+## Update 2023-XX-XX: Enhanced Landing Page UI
+- Added animated welcome text with space-themed effects
+- Improved positioning of interactive elements
+- Added element labels for better usability
+- Enhanced responsive design for different screen sizes
+
+What was changed:
+- index.html: Added welcome text and element labels
+- public/css/styles.css: Added text animations and improved element positioning
+- Added Google Fonts integration for better typography
+- Improved responsive layout for mobile, tablet, and desktop
+
+Why it was changed:
+- To create a more engaging and immersive first impression
+- To improve UI layout and element discoverability
+- To enhance overall usability and user experience
+- To make the navigation more intuitive and visually appealing
+
+What part of the app it affects:
+- Landing page appearance and user experience
+- Interactive element positioning and discoverability
+- Overall visual hierarchy and flow 
