@@ -1,6 +1,59 @@
 # Space-Themed Landing Page — "Cartoon Galaxy UX"
 
-A playful, immersive, and intuitive space-themed experience that merges cartoon visuals with lightweight 3D interactivity using HTML/CSS, JavaScript, and Three.js.
+Interactive space-themed landing page with animated stars, interactive elements, and immersive space experience.
+
+## Features
+
+- Animated starry background with twinkling effects using Three.js
+- Interactive rocket and galaxy navigation elements
+- Custom cursor with cat astronaut
+- Social media links page
+- Planets exploration page
+- Responsive design for all devices
+
+## Local Development
+
+To run the site locally:
+
+1. Install dependencies:
+   ```
+   npm install
+   ```
+
+2. Start local development server:
+   ```
+   npm start
+   ```
+
+3. Open browser at http://localhost:5000
+
+## Deployment to Vercel
+
+The site is configured for deployment to Vercel:
+
+1. Install Vercel CLI if not already installed:
+   ```
+   npm install -g vercel
+   ```
+
+2. Deploy to Vercel:
+   ```
+   npm run deploy
+   ```
+
+Or simply connect your GitHub repository to Vercel for automatic deployments.
+
+## Project Structure
+
+- `/public` - Contains all assets (images, CSS, JavaScript)
+  - `/public/images` - SVG and other image assets
+  - `/public/css` - Stylesheet files
+  - `/public/js` - JavaScript files and Three.js integrations
+- `*.html` - HTML pages
+- `vercel.json` - Vercel deployment configuration
+- `serve.json` - Local development server configuration
+- `roadmap.txt` - Project roadmap and change log
+- `mandates.txt` - Project requirements and guidelines
 
 ## 🚀 Features
 
@@ -43,41 +96,6 @@ A playful, immersive, and intuitive space-themed experience that merges cartoon 
 - **Home/Landing Page**: Interactive space scene with rocket and galaxy
 - **Social Page**: Links to social media platforms (Twitter, Instagram, Discord)
 - **Worlds Page**: Interactive planets representing Creativity, Adventure, and Knowledge
-
-## 🚀 Deployment
-
-This project is designed to be deployed on Vercel:
-
-1. Install Vercel CLI (if not already installed)
-   ```bash
-   npm install -g vercel
-   ```
-
-2. Deploy the project
-   ```bash
-   vercel
-   ```
-
-## 📁 Project Structure
-
-```
-/
-├── index.html              # Main landing page
-├── social.html             # Social links page
-├── worlds.html             # Worlds exploration page
-├── public/
-│   ├── css/
-│   │   ├── styles.css      # Main stylesheet
-│   │   ├── social.css      # Social page styles
-│   │   └── worlds.css      # Worlds page styles
-│   ├── js/
-│   │   ├── main.js         # Main JavaScript with Three.js setup
-│   │   ├── social.js       # Social page functionality
-│   │   └── worlds.js       # Worlds page functionality
-│   └── images/             # SVG and image assets
-├── roadmap.txt             # Project roadmap and progress
-└── mandates.txt            # Project requirements and mandates
-```
 
 ## 🧑‍🎨 Design Philosophy
 

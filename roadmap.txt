@@ -101,4 +101,24 @@ Why it was changed:
 What part of the app it affects:
 - All pages: Landing page, Social page, and Worlds page
 - Background star field appearance and animations
-- Overall visual cohesiveness and space theme quality 
+- Overall visual cohesiveness and space theme quality
+
+## Update 2023-XX-XX: Fixed Vercel Deployment
+- Updated Vercel configuration for proper static asset handling
+- Added serve.json for consistent local development
+- Ensured all assets are properly served in production
+
+What was changed:
+- vercel.json: Updated configuration to handle public directory assets
+- Added serve.json configuration file for local development
+- Fixed asset path consistency between local and production
+
+Why it was changed:
+- To ensure assets display correctly in production environment
+- To fix broken image references in the deployed version
+- To maintain consistent behavior between local and deployed environments
+
+What part of the app it affects:
+- Deployment configuration
+- Asset loading in production
+- Overall appearance on Vercel 

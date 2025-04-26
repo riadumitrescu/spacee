@@ -1,0 +1,16 @@
+{
+  "name": "cartoon-galaxy-ux",
+  "version": "1.0.0",
+  "description": "Space-themed interactive landing page with cartoon galaxy UX",
+  "scripts": {
+    "start": "serve",
+    "build": "echo 'Static site - no build step required'",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "serve": "^14.2.1"
+  },
+  "devDependencies": {
+    "vercel": "^33.0.1"
+  }
+} 
