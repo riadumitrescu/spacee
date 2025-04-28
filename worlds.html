@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Worlds - Space-Themed Landing Page</title>
+    <title>Cosmic Worlds - Space Adventure Hub</title>
     <link rel="stylesheet" href="public/css/styles.css">
     <link rel="stylesheet" href="public/css/worlds.css">
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;700&display=swap" rel="stylesheet">
@@ -28,6 +28,25 @@
         
         .planet-wrapper {
             will-change: transform, opacity;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+        
+        .game-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            display: block;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+        }
+        
+        .planet-label {
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 5px;
+        }
+        
+        .planet-tooltip {
+            width: 200px;
         }
     </style>
 </head>
@@ -45,29 +64,41 @@
         
         <!-- Worlds content -->
         <div class="worlds-content">
-            <h1>Explore Our Worlds</h1>
+            <h1>Cosmic Adventures Await!</h1>
             
             <div class="planets-container">
-                <div class="planet-wrapper" data-planet="creativity">
-                    <img src="public/images/planet1.svg?v=1" alt="Creativity Planet" class="planet">
-                    <div class="planet-label">Creativity</div>
-                    <div class="planet-tooltip">You unlocked Creativity!</div>
+                <div class="planet-wrapper" data-planet="cosmic-quest">
+                    <div class="game-icon">🚀</div>
+                    <div class="planet-label">Cosmic Quest</div>
+                    <div class="planet-tooltip">Navigate through asteroid fields and complete exciting missions!</div>
                 </div>
                 
-                <div class="planet-wrapper" data-planet="adventure">
-                    <img src="public/images/planet2.svg?v=1" alt="Adventure Planet" class="planet">
-                    <div class="planet-label">Adventure</div>
-                    <div class="planet-tooltip">You unlocked Adventure!</div>
+                <div class="planet-wrapper" data-planet="alien-explorer">
+                    <div class="game-icon">👽</div>
+                    <div class="planet-label">Alien Explorer</div>
+                    <div class="planet-tooltip">Meet friendly aliens and learn about their cultures!</div>
                 </div>
                 
-                <div class="planet-wrapper" data-planet="knowledge">
-                    <img src="public/images/planet3.svg?v=1" alt="Knowledge Planet" class="planet">
-                    <div class="planet-label">Knowledge</div>
-                    <div class="planet-tooltip">You unlocked Knowledge!</div>
+                <div class="planet-wrapper" data-planet="space-academy">
+                    <div class="game-icon">🔭</div>
+                    <div class="planet-label">Space Academy</div>
+                    <div class="planet-tooltip">Train to become the ultimate space adventurer!</div>
+                </div>
+                
+                <div class="planet-wrapper" data-planet="galaxy-defender">
+                    <div class="game-icon">🛡️</div>
+                    <div class="planet-label">Galaxy Defender</div>
+                    <div class="planet-tooltip">Protect the galaxy from cosmic threats!</div>
+                </div>
+                
+                <div class="planet-wrapper" data-planet="stellar-puzzles">
+                    <div class="game-icon">🧩</div>
+                    <div class="planet-label">Stellar Puzzles</div>
+                    <div class="planet-tooltip">Solve cosmic riddles and unlock stellar secrets!</div>
                 </div>
             </div>
             
-            <a href="index.html" class="back-link" id="back-to-home">Back to Space</a>
+            <a href="index.html" class="back-link" id="back-to-home">Return to Base</a>
         </div>
     </div>
 

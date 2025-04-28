@@ -44,3 +44,11 @@
 - Galaxy visualization
 - Particle effects for atmosphere
 - Light effects for interactive elements 
+
+## User-Approved Elements
+- Current overall setup and theme implementation is good
+- Animated page transitions between screens are essential
+- Social icons must display properly with clear visual feedback
+- Smooth animations using cubic-bezier timing functions
+- Background interactivity must not interfere with foreground elements
+- Responsive OrbitControls for star rotation in background 

@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Cat Cursor</title>
-    <g id="cat-cursor" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <!-- Cat head shape -->
-        <path d="M20,2 C28.8366,2 36,9.16344 36,18 C36,26.8366 28.8366,34 20,34 C11.1634,34 4,26.8366 4,18 C4,9.16344 11.1634,2 20,2 Z" id="cat-head" fill="#9C65C0" opacity="0.8"></path>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Astronaut Glove Cursor</title>
+    <g id="astronaut-glove" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <!-- Main glove body - open hand -->
+        <path d="M15,30 C13,27 12,23 15,20 C18,17 22,16 25,16 C28,16 31,17 33,20 C35,23 34,27 31,30 C28,33 18,33 15,30 Z" id="glove-main" fill="#9D7EC1" stroke="#000000" stroke-width="2"></path>
         
-        <!-- Cat ears -->
-        <path d="M8,12 L4,2 L14,7 Z" id="ear-left" fill="#9C65C0" transform="translate(9.000000, 7.000000) rotate(-15.000000) translate(-9.000000, -7.000000)"></path>
-        <path d="M30,12 L26,2 L36,7 Z" id="ear-right" fill="#9C65C0" transform="translate(31.000000, 7.000000) scale(-1, 1) rotate(-15.000000) translate(-31.000000, -7.000000)"></path>
+        <!-- Fingers spread out -->
+        <path d="M22,16 C22,16 20,12 21,9 C22,6 24,5 26,6 C28,7 29,11 27,16" id="finger-1" stroke="#000000" stroke-width="2" fill="#9D7EC1"></path>
+        <path d="M26,16 C26,16 26,11 28,8 C30,5 33,5 34,8 C35,11 33,16 31,16" id="finger-2" stroke="#000000" stroke-width="2" fill="#9D7EC1"></path>
+        <path d="M31,16 C31,16 34,12 37,10 C40,8 42,9 42,12 C42,15 38,19 36,19" id="finger-3" stroke="#000000" stroke-width="2" fill="#9D7EC1"></path>
+        <path d="M12,25 C12,25 9,24 8,21 C7,18 8,15 10,15 C12,15 15,17 17,23" id="thumb" stroke="#000000" stroke-width="2" fill="#9D7EC1"></path>
         
-        <!-- Cat eyes -->
-        <ellipse id="eye-left" fill="#FFFFFF" cx="13" cy="16" rx="4" ry="5"></ellipse>
-        <ellipse id="eye-right" fill="#FFFFFF" cx="27" cy="16" rx="4" ry="5"></ellipse>
+        <!-- Palm detail lines -->
+        <path d="M20,16 C20,16 19,20 19,24 C19,28 21,30 21,30" id="line-1" stroke="#000000" stroke-width="1"></path>
+        <path d="M25,16 C25,16 24,21 24,25 C24,29 26,30 26,30" id="line-2" stroke="#000000" stroke-width="1"></path>
+        <path d="M31,16 C31,16 30,20 30,25 C30,30 31,30 31,30" id="line-3" stroke="#000000" stroke-width="1"></path>
+        <path d="M17,24 C17,24 21,24 26,24 C31,24 36,24 36,24" id="line-4" stroke="#000000" stroke-width="1"></path>
         
-        <!-- Cat pupils -->
-        <ellipse id="pupil-left" fill="#000000" cx="13" cy="16" rx="2" ry="3"></ellipse>
-        <ellipse id="pupil-right" fill="#000000" cx="27" cy="16" rx="2" ry="3"></ellipse>
-        
-        <!-- Cat nose -->
-        <path d="M20,22 L17,26 L23,26 Z" id="nose" fill="#FF88BB"></path>
-        
-        <!-- Cat whiskers -->
-        <path d="M16,24 L6,22" id="whisker-1" stroke="#FFFFFF" stroke-width="1"></path>
-        <path d="M16,26 L7,26" id="whisker-2" stroke="#FFFFFF" stroke-width="1"></path>
-        <path d="M16,28 L6,30" id="whisker-3" stroke="#FFFFFF" stroke-width="1"></path>
-        
-        <path d="M24,24 L34,22" id="whisker-4" stroke="#FFFFFF" stroke-width="1"></path>
-        <path d="M24,26 L33,26" id="whisker-5" stroke="#FFFFFF" stroke-width="1"></path>
-        <path d="M24,28 L34,30" id="whisker-6" stroke="#FFFFFF" stroke-width="1"></path>
+        <!-- Glove wrist/cuff -->
+        <path d="M15,30 C15,30 14,34 17,37 C20,40 27,40 32,37 C37,34 36,30 36,30" id="glove-cuff" stroke="#000000" stroke-width="2" fill="#7B23C0"></path>
+        <path d="M16,33 C16,33 22,36 27,36 C32,36 35,33 35,33" id="cuff-detail" stroke="#000000" stroke-width="1"></path>
         
         <!-- Glow effect -->
-        <circle id="glow" fill="#9C65C0" opacity="0.3" cx="20" cy="18" r="18"></circle>
+        <circle id="glow" fill="#9D7EC1" opacity="0.3" cx="25" cy="25" r="24"></circle>
     </g>
 </svg> 

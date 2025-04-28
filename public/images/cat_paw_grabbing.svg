@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Astronaut Glove Grabbing Cursor</title>
+    <g id="astronaut-glove-grabbing" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <!-- Main glove body - closed fist -->
+        <path d="M12,36 C11,30 12,25 15,22 C18,19 22,17 27,17 C32,17 35,19 37,22 C39,25 39,28 38,32 C37,36 33,40 28,41 C23,42 15,42 12,36 Z" id="glove-main" fill="#9D7EC1" stroke="#000000" stroke-width="2"></path>
+        
+        <!-- Knuckle details -->
+        <path d="M22,17 C22,17 20,14 20,12 C20,10 22,9 24,10 C26,11 27,14 26,17" id="knuckle-1" stroke="#000000" stroke-width="2" fill="#9D7EC1"></path>
+        <path d="M27,17 C27,17 26,14 27,12 C28,10 31,10 32,12 C33,14 33,17 32,17" id="knuckle-2" stroke="#000000" stroke-width="2" fill="#9D7EC1"></path>
+        <path d="M32,17 C32,17 33,14 35,12 C37,10 39,11 39,13 C39,15 37,17 37,17" id="knuckle-3" stroke="#000000" stroke-width="2" fill="#9D7EC1"></path>
+        <path d="M15,30 C15,30 13,28 12,26 C11,24 12,21 14,21 C16,21 18,24 18,28" id="thumb" stroke="#000000" stroke-width="2" fill="#9D7EC1"></path>
+        
+        <!-- Fist detail lines -->
+        <path d="M20,17 C20,17 20,22 20,25 C20,28 20,32 20,32" id="line-1" stroke="#000000" stroke-width="1"></path>
+        <path d="M26,17 C26,17 26,22 26,27 C26,32 26,33 26,33" id="line-2" stroke="#000000" stroke-width="1"></path>
+        <path d="M32,17 C32,17 33,21 33,27 C33,33 32,33 32,33" id="line-3" stroke="#000000" stroke-width="1"></path>
+        <path d="M18,28 C18,28 23,28 30,28 C37,28 38,28 38,28" id="line-4" stroke="#000000" stroke-width="1"></path>
+        <path d="M18,32 C18,32 25,34 33,33 C41,32 38,32 38,32" id="line-5" stroke="#000000" stroke-width="1"></path>
+        
+        <!-- Glove wrist/cuff -->
+        <path d="M12,36 C12,36 12,40 15,42 C18,44 24,44 30,42 C36,40 37,37 37,37" id="glove-cuff" stroke="#000000" stroke-width="2" fill="#7B23C0"></path>
+        <path d="M14,38 C14,38 20,40 25,40 C30,40 36,37 36,37" id="cuff-detail" stroke="#000000" stroke-width="1"></path>
+        
+        <!-- Enhanced glow effect for grabbing -->
+        <circle id="glow" fill="#9D7EC1" opacity="0.4" cx="25" cy="25" r="24"></circle>
+    </g>
+</svg> 

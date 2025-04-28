@@ -3,15 +3,16 @@
 /* Parked Rocket */
 .parked-rocket {
     position: absolute;
-    top: 20%;
+    top: 15%;
     right: 10%;
     transform: rotate(15deg);
     animation: floating 5s ease-in-out infinite, rocket-entrance 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 5;
 }
 
 .parked-rocket .rocket {
-    width: 120px;
-    filter: drop-shadow(0 0 15px rgba(255, 165, 0, 0.3));
+    width: 140px;
+    filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.5));
 }
 
 /* Social Content */
@@ -30,10 +31,19 @@
 
 .social-content h1 {
     font-size: 3.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
     color: #fff;
     text-shadow: 0 0 20px rgba(99, 184, 255, 0.8);
     animation: glow 3s ease-in-out infinite alternate;
+}
+
+.social-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+    color: #d9f2ff;
+    max-width: 600px;
+    animation: pulse 2s ease-in-out infinite alternate;
+    text-shadow: 0 0 10px rgba(99, 184, 255, 0.5);
 }
 
 .social-links {
@@ -59,74 +69,80 @@
 }
 
 .social-link:hover {
-    transform: translateY(-8px);
-    filter: drop-shadow(0 0 20px rgba(99, 184, 255, 0.8));
+    transform: translateY(-8px) scale(1.05);
+    filter: drop-shadow(0 0 25px rgba(99, 184, 255, 0.8));
 }
 
 .icon-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 80px;
-    height: 80px;
-    background: rgba(255, 255, 255, 0.15);
+    width: 90px;
+    height: 90px;
+    background: rgba(30, 70, 120, 0.4);
     border-radius: 50%;
-    padding: 15px;
+    padding: 18px;
     transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 10px rgba(99, 184, 255, 0.3);
+    border: 2px solid rgba(99, 184, 255, 0.4);
+    box-shadow: 0 0 15px rgba(99, 184, 255, 0.4);
 }
 
 .social-link:hover .icon-wrapper {
-    background: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 0 25px rgba(99, 184, 255, 0.8);
+    background: rgba(40, 100, 170, 0.5);
+    box-shadow: 0 0 30px rgba(99, 184, 255, 0.9);
     animation: socialPulse 1.5s infinite;
-    border-color: rgba(255, 255, 255, 0.6);
+    border-color: rgba(140, 200, 255, 0.8);
 }
 
 .social-link img {
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     object-fit: contain;
     filter: brightness(0) invert(1);
     transition: transform 0.3s ease;
 }
 
 .social-link:hover img {
-    transform: scale(1.1);
+    transform: scale(1.15) rotate(10deg);
 }
 
 .social-link span {
-    font-size: 1.2rem;
-    font-weight: 500;
-    transition: color 0.3s ease;
+    font-size: 1.3rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
     letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(0, 80, 170, 0.6);
 }
 
 .social-link:hover span {
-    color: #63b8ff;
+    color: #a0d8ff;
+    transform: scale(1.08);
+    letter-spacing: 1.5px;
 }
 
 .back-link {
     display: inline-block;
     margin-top: 2rem;
-    padding: 0.75rem 1.5rem;
-    background: rgba(99, 184, 255, 0.2);
-    border: 1px solid rgba(99, 184, 255, 0.4);
+    padding: 0.9rem 2rem;
+    background: rgba(40, 100, 170, 0.4);
+    border: 2px solid rgba(99, 184, 255, 0.5);
     border-radius: 30px;
     color: #fff;
     text-decoration: none;
     transition: all 0.3s ease;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
     opacity: 1;
     visibility: visible;
 }
 
 .back-link:hover {
-    background: rgba(99, 184, 255, 0.4);
-    box-shadow: 0 0 15px rgba(99, 184, 255, 0.8);
-    transform: translateY(-3px);
+    background: rgba(60, 120, 200, 0.5);
+    box-shadow: 0 0 20px rgba(99, 184, 255, 0.8);
+    transform: translateY(-5px) scale(1.05);
+    letter-spacing: 1px;
 }
 
 /* Custom animations for social elements */
@@ -157,8 +173,19 @@
     }
     to {
         text-shadow: 0 0 15px rgba(255, 255, 255, 0.7),
-                     0 0 30px rgba(255, 255, 255, 0.7),
-                     0 0 40px rgba(128, 0, 255, 0.7);
+                     0 0 30px rgba(80, 150, 255, 0.7),
+                     0 0 40px rgba(60, 120, 255, 0.7);
+    }
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+        opacity: 0.9;
+    }
+    to {
+        transform: scale(1.03);
+        opacity: 1;
     }
 }
 
@@ -221,26 +248,5 @@
     100% {
         transform: rotate(15deg) translate(0, 0);
         opacity: 1;
-    }
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@keyframes floatAnimation {
-    0% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-    100% {
-        transform: translateY(0);
     }
 } 

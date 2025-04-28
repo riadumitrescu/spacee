@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Space-Themed Landing Page</title>
+    <title>Space Adventure Hub</title>
     <link rel="stylesheet" href="public/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;700&display=swap" rel="stylesheet">
     <script type="importmap">
@@ -17,7 +17,7 @@
 </head>
 <body>
     <div class="scene-container">
-        <!-- Background layers -->
+        <!-- Background layers - These move with OrbitControls -->
         <div class="background-layer"></div>
         <div id="three-container"></div>
         
@@ -30,32 +30,39 @@
         <!-- Custom cursor -->
         <div id="custom-cursor"></div>
         
-        <!-- Welcome Text -->
-        <div class="welcome-text">
-            <h1 class="title">Welcome to Space</h1>
-            <p class="subtitle">Explore the cosmic wonders</p>
-        </div>
-        
-        <!-- Interactive elements -->
-        <div class="interactive-elements">
-            <!-- Rocket - Social -->
-            <div class="rocket-container" id="rocket-social">
-                <div class="element-label">Connect</div>
-                <img src="public/images/rocket.svg" alt="Rocket" class="rocket">
-                <div class="rocket-flame-container">
-                    <div class="rocket-flame-inner"></div>
-                </div>
-                <div class="social-icons">
-                    <a href="#" class="social-icon"><img src="public/images/icon_twitter.svg" alt="Twitter"></a>
-                    <a href="#" class="social-icon"><img src="public/images/icon_instagram.svg" alt="Instagram"></a>
-                    <a href="#" class="social-icon"><img src="public/images/icon_discord.svg" alt="Discord"></a>
-                </div>
+        <!-- Foreground elements - These stay fixed -->
+        <div class="foreground-elements">
+            <!-- Welcome Text -->
+            <div class="welcome-text">
+                <h1 class="title">Space Adventure Hub</h1>
+                <p class="subtitle">Explore cosmic worlds, missions, and characters!</p>
             </div>
             
-            <!-- Galaxy - Worlds -->
-            <div class="galaxy-container" id="galaxy-worlds">
-                <div class="element-label">Explore</div>
-                <img src="public/images/galaxy.svg" alt="Galaxy" class="galaxy">
+            <!-- Interactive elements -->
+            <div class="interactive-elements">
+                <!-- Rocket - Social -->
+                <div class="rocket-container" id="rocket-social">
+                    <div class="element-label">Social</div>
+                    <img src="public/images/rocket.svg" alt="Rocket" class="rocket">
+                    <div class="rocket-flame-container">
+                        <div class="rocket-flame-inner"></div>
+                    </div>
+                </div>
+                
+                <!-- Galaxy - Worlds -->
+                <div class="galaxy-container" id="galaxy-worlds">
+                    <div class="element-label">Worlds</div>
+                    <img src="public/images/galaxy.svg" alt="Galaxy" class="galaxy">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Enhanced interaction hint with visual cues -->
+        <div class="interaction-hint" id="enhanced-hint">
+            <div class="hint-icon grab-icon">👋</div>
+            <div class="hint-text">
+                <p><strong>GRAB & ROTATE</strong> your cosmic adventure!</p>
+                <p>Scroll to zoom in and explore</p>
             </div>
         </div>
     </div>

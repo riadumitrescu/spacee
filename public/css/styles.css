@@ -3,19 +3,25 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    cursor: none !important; /* Hide default cursor on ALL elements */
 }
 
 body {
     font-family: 'Exo 2', sans-serif;
     overflow: hidden;
-    cursor: none; /* Hide default cursor */
+    cursor: none !important; /* Hide default cursor */
     color: #fff;
     background-color: #000; /* Fallback background */
+}
+
+body.dragging {
+    cursor: none !important;
 }
 
 a {
     text-decoration: none;
     color: inherit;
+    cursor: none !important;
 }
 
 .scene-container {
@@ -49,6 +55,18 @@ a {
     filter: blur(2px);
 }
 
+/* Foreground elements - these stay fixed */
+.foreground-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none; /* Let clicks pass through to the Three.js background */
+}
+
+/* Fix Three.js container and interactive elements */
 #three-container {
     position: absolute;
     top: 0;
@@ -56,111 +74,73 @@ a {
     width: 100%;
     height: 100%;
     z-index: 1;
+    cursor: grab;
+    touch-action: none; /* Prevent browser handling of touch events */
+    user-select: none; /* Prevent text selection that might interfere */
 }
 
-/* Welcome Text */
-.welcome-text {
-    position: absolute;
-    top: 15%;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    z-index: 3;
-    width: 100%;
+#three-container:active {
+    cursor: none !important;
 }
 
-.title {
-    font-size: 4.5rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-    background: linear-gradient(90deg, #8844ff, #ff44aa, #44aaff);
-    background-size: 200% auto;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    text-shadow: 0 0 30px rgba(136, 68, 255, 0.5);
-    animation: shine 8s linear infinite, float-text 6s ease-in-out infinite;
-}
-
-.subtitle {
-    font-size: 1.8rem;
-    font-weight: 300;
-    opacity: 0.8;
-    letter-spacing: 3px;
-    animation: pulse-text 4s ease-in-out infinite, float-text 6s ease-in-out infinite;
-    animation-delay: 0.5s;
-}
-
-@keyframes shine {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-@keyframes pulse-text {
-    0% {
-        opacity: 0.6;
-        letter-spacing: 3px;
-    }
-    50% {
-        opacity: 0.9;
-        letter-spacing: 5px;
-    }
-    100% {
-        opacity: 0.6;
-        letter-spacing: 3px;
-    }
-}
-
-@keyframes float-text {
-    0% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
-    100% {
-        transform: translateY(0px);
-    }
-}
-
-/* Custom Cat Cursor */
-#custom-cursor {
-    position: fixed;
-    width: 40px;
-    height: 40px;
-    background-image: url('../images/cat_cursor.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    pointer-events: none;
-    z-index: 9999;
-    transform-origin: center;
-    transition: transform 0.1s ease;
-    will-change: transform; /* Performance optimization */
-    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5)); /* Add visible glow to cursor */
-}
-
-#custom-cursor.click {
-    transform: scale(1.2);
-}
-
-/* Interactive Elements */
 .interactive-elements {
     position: relative;
     width: 100%;
     height: 100%;
-    z-index: 2;
     display: flex;
     justify-content: center;
     align-items: center;
+    pointer-events: none; /* Allow clicks to pass through to Three.js container */
+}
+
+/* Make specific interactive elements clickable */
+.rocket-container,
+.galaxy-container,
+.social-icon,
+.back-link,
+.welcome-text {
+    pointer-events: auto; /* These elements should receive clicks */
+}
+
+/* Custom Cursor - Astronaut Glove */
+#custom-cursor {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    background-image: url('../images/glove_open-Photoroom.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 9999;
+    transform-origin: 75% 35%;
+    transition: transform 0.1s ease, background-image 0.15s ease;
+    will-change: transform, left, top;
+    filter: drop-shadow(0 0 5px rgba(157, 126, 193, 0.7));
+    left: 0;
+    top: 0;
+    margin-left: -18px;
+    margin-top: -5px;
+}
+
+#custom-cursor.click {
+    transform: scale(0.95);
+}
+
+/* Update for astronaut hand cursor */
+#custom-cursor {
+    background-image: url('../images/glove_open-Photoroom.png');
+}
+
+body.dragging #custom-cursor {
+    background-image: url('../images/glove_grab-Photoroom.png');
+    opacity: 1 !important;
+    filter: drop-shadow(0 0 8px rgba(157, 126, 193, 0.9));
+}
+
+/* Ensure cursor is visible when dragging the scene */
+.dragging #custom-cursor {
+    opacity: 1 !important;
+    transition: opacity 0.2s ease, background-image 0.2s ease;
 }
 
 /* Element Label */
@@ -185,7 +165,7 @@ a {
     transform: translate(-50%, -50%);
     z-index: 3;
     transition: transform 0.5s ease, filter 0.3s ease;
-    cursor: none;
+    cursor: none !important;
 }
 
 .rocket-container:hover .element-label {
@@ -443,12 +423,12 @@ img[src$=".svg"], img[src$=".png"] {
     z-index: 9900;
 }
 
-/* Make flame more intense and fill the screen faster */
+/* Make flame more intense and fill the screen slower but more completely */
 .rocket-flame-grow {
-    width: 400vw !important;
-    height: 400vw !important;
+    width: 600vw !important; /* Much larger to ensure full coverage */
+    height: 600vw !important;
     opacity: 1 !important;
-    transition: width 2.2s cubic-bezier(0.22, 1, 0.36, 1), height 2.2s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    transition: width 3s cubic-bezier(0.22, 1, 0.36, 1), height 3s cubic-bezier(0.22, 1, 0.36, 1) !important;
 }
 
 /* Flame overlay for transitions */
@@ -462,12 +442,12 @@ img[src$=".svg"], img[src$=".png"] {
         rgba(200, 50, 10, 0.8) 60%,
         rgba(150, 30, 10, 0.7) 100%
     ) !important;
-    animation: flame-pulse 2.5s ease-in-out infinite alternate;
+    animation: flame-pulse 3s ease-in-out infinite alternate; /* Slower animation */
 }
 
 /* Add specific styles for flame exit animation */
 .scene-container .flame-overlay {
-    transition: opacity 0.6s cubic-bezier(0.55, 0.06, 0.68, 0.19) !important; /* Faster exit with different easing */
+    transition: opacity 2s cubic-bezier(0.55, 0.06, 0.68, 0.19) !important; /* Slower exit */
 }
 
 @keyframes flame-pulse {
@@ -505,24 +485,24 @@ img[src$=".svg"], img[src$=".png"] {
         rgba(10, 5, 30, 0.4) 80%,
         rgba(0, 0, 0, 0) 100%
     );
-    transition: opacity 1s ease, visibility 1s ease;
+    transition: opacity 2.5s ease, visibility 2.5s ease, transform 3s cubic-bezier(0.19, 1, 0.22, 1);
     transform: scale(0);
     transform-origin: center center;
 }
 
 /* Animation classes */
 .rocket-animate {
-    animation: rocket-fly 2.5s ease-in forwards;
+    animation: rocket-fly 3.5s ease-in forwards; /* Slower animation */
 }
 
 .rocket-flame-grow {
-    width: 300vw !important;
-    height: 300vw !important;
+    width: 600vw !important; /* Much larger to ensure full coverage */
+    height: 600vw !important;
     opacity: 1 !important;
 }
 
 .galaxy-animate {
-    animation: galaxy-expand 1.5s ease-in forwards;
+    animation: galaxy-expand 3s ease-in forwards; /* Slower animation */
 }
 
 @keyframes rocket-fly {
@@ -545,7 +525,7 @@ img[src$=".svg"], img[src$=".png"] {
         transform: translate(-50%, -50%) scale(1) rotate(0deg);
     }
     100% {
-        transform: translate(-50%, -50%) scale(25) rotate(90deg);
+        transform: translate(-50%, -50%) scale(40) rotate(90deg); /* Larger scale to ensure full coverage */
     }
 }
 
@@ -645,7 +625,7 @@ img[src$=".svg"], img[src$=".png"] {
 }
 
 .galaxy-container.transition-active::after {
-    animation: galaxy-ripple 1.5s ease-in forwards;
+    animation: galaxy-ripple 3s ease-in forwards; /* Slower animation */
 }
 
 @keyframes galaxy-ripple {
@@ -654,7 +634,168 @@ img[src$=".svg"], img[src$=".png"] {
         opacity: 0.8;
     }
     100% {
-        transform: translate(-50%, -50%) scale(30);
+        transform: translate(-50%, -50%) scale(50); /* Larger scale to ensure full coverage */
         opacity: 0;
     }
+}
+
+/* Remove the interaction-hint that appears in the corner */
+.interaction-hint {
+    display: none !important;
+}
+
+#enhanced-hint {
+    display: none !important;
+}
+
+/* Enhanced Initial rotate message with more details */
+.initial-rotate-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 15px;
+    font-size: 24px;
+    font-weight: 500;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    text-align: center;
+    min-width: 260px;
+    border: 2px solid rgba(157, 126, 193, 0.8);
+    box-shadow: 0 0 20px rgba(123, 35, 192, 0.5);
+}
+
+.initial-rotate-message.visible {
+    opacity: 1;
+}
+
+.initial-rotate-message .main-instruction {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.initial-rotate-message .sub-instruction {
+    display: block;
+    font-size: 16px;
+    opacity: 0.85;
+    font-weight: 400;
+}
+
+.rotate-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 0 5px rgba(157, 126, 193, 0.8));
+}
+
+@media (max-width: 768px) {
+    .initial-rotate-message {
+        padding: 15px 20px;
+        font-size: 20px;
+    }
+    .initial-rotate-message .main-instruction {
+        font-size: 20px;
+    }
+    .initial-rotate-message .sub-instruction {
+        font-size: 14px;
+    }
+    .rotate-icon {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Welcome Text */
+.welcome-text {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 3;
+    width: 100%;
+}
+
+.title {
+    font-size: 4.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #8844ff, #ff44aa, #44aaff);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 30px rgba(136, 68, 255, 0.5);
+    animation: shine 8s linear infinite, float-text 6s ease-in-out infinite;
+}
+
+.subtitle {
+    font-size: 1.8rem;
+    font-weight: 300;
+    opacity: 0.8;
+    letter-spacing: 3px;
+    animation: pulse-text 4s ease-in-out infinite, float-text 6s ease-in-out infinite;
+    animation-delay: 0.5s;
+}
+
+@keyframes shine {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes pulse-text {
+    0% {
+        opacity: 0.6;
+        letter-spacing: 3px;
+    }
+    50% {
+        opacity: 0.9;
+        letter-spacing: 5px;
+    }
+    100% {
+        opacity: 0.6;
+        letter-spacing: 3px;
+    }
+}
+
+@keyframes float-text {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Make sure no default cursors show anywhere */
+a, button, input, select, textarea, 
+.rocket-container, .galaxy-container, 
+.social-icon, .back-link, .welcome-text,
+#three-container, #tutorial-close {
+    cursor: none !important;
+}
+
+#three-container:active {
+    cursor: none !important;
 } 

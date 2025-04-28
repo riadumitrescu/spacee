@@ -28,17 +28,31 @@ function initTransitions() {
             // Disable pointer events during transition
             document.body.style.pointerEvents = 'none';
             
-            // Start tracking mouse position for flame center
+            // Start tracking position for flame center from the rocket turbine
             const rocket = rocketContainer.querySelector('.rocket');
             const rocketRect = rocket.getBoundingClientRect();
+            const rocketFlameContainer = rocketContainer.querySelector('.rocket-flame-container');
+            const flameRect = rocketFlameContainer ? rocketFlameContainer.getBoundingClientRect() : null;
             
-            // Position the flame at the bottom center of the rocket
-            rocketFlame.style.left = (rocketRect.left + rocketRect.width / 2) + 'px';
-            rocketFlame.style.top = (rocketRect.top + rocketRect.height) + 'px';
+            // Position the flame precisely at the rocket turbine position
+            const flamePosX = flameRect ? (flameRect.left + flameRect.width / 2) : (rocketRect.left + rocketRect.width / 2);
+            const flamePosY = flameRect ? (flameRect.top + flameRect.height) : (rocketRect.top + rocketRect.height);
             
-            // Make transition visible
-            rocketTransition.style.opacity = '1';
-            rocketTransition.style.visibility = 'visible';
+            // Create a small initial flame that will grow
+            const initialFlame = document.createElement('div');
+            initialFlame.className = 'initial-flame';
+            initialFlame.style.position = 'fixed';
+            initialFlame.style.zIndex = '9998';
+            initialFlame.style.left = flamePosX + 'px';
+            initialFlame.style.top = flamePosY + 'px';
+            initialFlame.style.width = '20px';
+            initialFlame.style.height = '30px';
+            initialFlame.style.background = 'radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(255,200,100,0.95) 20%, rgba(255,140,50,0.9) 40%, rgba(255,80,0,0.8) 60%, rgba(200,0,0,0.4) 80%, rgba(100,0,0,0.2) 100%)';
+            initialFlame.style.borderRadius = '50%';
+            initialFlame.style.transform = 'translate(-50%, -50%)';
+            initialFlame.style.boxShadow = '0 0 20px 10px rgba(255,100,0,0.5)';
+            initialFlame.style.transition = 'width 4s cubic-bezier(0.22, 1, 0.36, 1), height 4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease';
+            document.body.appendChild(initialFlame);
             
             // Add animation classes to elements
             rocketContainer.classList.add('transition-active');
@@ -53,29 +67,42 @@ function initTransitions() {
             flameOverlay.style.position = 'fixed';
             flameOverlay.style.top = '0';
             flameOverlay.style.left = '0';
-            flameOverlay.style.width = '100%';
-            flameOverlay.style.height = '100%';
+            flameOverlay.style.width = '100vw';
+            flameOverlay.style.height = '100vh';
             flameOverlay.style.background = 'radial-gradient(circle at center, rgba(255,255,255,1) 0%, rgba(255,200,100,0.95) 10%, rgba(255,120,50,0.9) 20%, rgba(255,80,30,0.85) 40%, rgba(200,50,10,0.8) 60%, rgba(150,30,10,0.7) 100%)';
             flameOverlay.style.opacity = '0';
             flameOverlay.style.zIndex = '9999';
             flameOverlay.style.pointerEvents = 'none';
-            flameOverlay.style.transition = 'opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1)';
+            flameOverlay.style.transition = 'opacity 3s cubic-bezier(0.22, 1, 0.36, 1)';
             document.body.appendChild(flameOverlay);
             
-            // Grow the flame after a short delay - slower timing for more dramatic effect
+            // Start the flame growth sequence
             setTimeout(() => {
-                rocketFlame.classList.add('rocket-flame-grow');
+                // First grow the small flame from the turbine
+                initialFlame.style.width = '300px';
+                initialFlame.style.height = '300px';
                 
-                // After flame starts growing, start fading in the overlay more slowly
+                // After initial growth, start expanding to full screen
                 setTimeout(() => {
-                    flameOverlay.style.opacity = '1';
+                    initialFlame.style.width = '1000px';
+                    initialFlame.style.height = '1000px';
                     
-                    // When overlay is fully visible, navigate immediately - with longer delay
+                    // Start fading in the full overlay as the initial flame grows
                     setTimeout(() => {
-                        window.location.href = 'social.html';
-                    }, 1200); // Increased time for slower transition
-                }, 800); // More delay before overlay fades in
-            }, 600);
+                        flameOverlay.style.opacity = '1';
+                        
+                        // As full overlay becomes visible, fade out the initial flame
+                        setTimeout(() => {
+                            initialFlame.style.opacity = '0';
+                            
+                            // When overlay is fully visible, navigate - with longer delay
+                            setTimeout(() => {
+                                window.location.href = 'social.html';
+                            }, 2000);
+                        }, 1000);
+                    }, 800);
+                }, 800);
+            }, 400);
         });
     }
     
@@ -87,9 +114,41 @@ function initTransitions() {
             // Disable pointer events during transition
             document.body.style.pointerEvents = 'none';
             
-            // Make transition visible
-            galaxyTransition.style.opacity = '1';
-            galaxyTransition.style.visibility = 'visible';
+            // Get galaxy position to start the effect from
+            const galaxy = galaxyContainer.querySelector('.galaxy');
+            const galaxyRect = galaxy.getBoundingClientRect();
+            const galaxyCenterX = galaxyRect.left + galaxyRect.width / 2;
+            const galaxyCenterY = galaxyRect.top + galaxyRect.height / 2;
+            
+            // Create the initial galaxy circle that will grow
+            const initialGalaxy = document.createElement('div');
+            initialGalaxy.className = 'initial-galaxy';
+            initialGalaxy.style.position = 'fixed';
+            initialGalaxy.style.zIndex = '9998';
+            initialGalaxy.style.left = galaxyCenterX + 'px';
+            initialGalaxy.style.top = galaxyCenterY + 'px';
+            initialGalaxy.style.width = '40px';
+            initialGalaxy.style.height = '40px';
+            initialGalaxy.style.background = 'radial-gradient(circle at center, rgba(130,70,230,0.9) 0%, rgba(100,50,200,0.85) 20%, rgba(70,30,170,0.8) 40%, rgba(50,20,140,0.7) 60%, rgba(40,10,120,0.6) 80%, rgba(30,5,100,0.5) 100%)';
+            initialGalaxy.style.borderRadius = '50%';
+            initialGalaxy.style.transform = 'translate(-50%, -50%)';
+            initialGalaxy.style.boxShadow = '0 0 30px 15px rgba(100,50,200,0.4)';
+            initialGalaxy.style.transition = 'width 3s cubic-bezier(0.19, 1, 0.22, 1), height 3s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease';
+            document.body.appendChild(initialGalaxy);
+            
+            // Create a full-screen black hole overlay for final transition
+            const blackHoleOverlay = document.createElement('div');
+            blackHoleOverlay.style.position = 'fixed';
+            blackHoleOverlay.style.top = '0';
+            blackHoleOverlay.style.left = '0';
+            blackHoleOverlay.style.width = '100vw';
+            blackHoleOverlay.style.height = '100vh';
+            blackHoleOverlay.style.background = 'radial-gradient(circle at center, rgba(100,50,200,0.9) 0%, rgba(70,30,150,0.85) 20%, rgba(40,10,100,0.8) 40%, rgba(20,5,60,0.7) 70%, rgba(10,2,30,0.6) 100%)';
+            blackHoleOverlay.style.opacity = '0';
+            blackHoleOverlay.style.zIndex = '9999';
+            blackHoleOverlay.style.pointerEvents = 'none';
+            blackHoleOverlay.style.transition = 'opacity 2.2s cubic-bezier(0.19, 1, 0.22, 1)';
+            document.body.appendChild(blackHoleOverlay);
             
             // Add animation classes to elements
             galaxyContainer.classList.add('transition-active');
@@ -98,16 +157,33 @@ function initTransitions() {
             // Set transition source for incoming page
             setOutgoingTransition('galaxy');
             
-            // Expand the galaxy background after delay
+            // Start the galaxy growth sequence
             setTimeout(() => {
-                galaxyTransition.style.transform = 'scale(1)';
-                galaxyTransition.style.opacity = '1';
+                // First grow the small galaxy
+                initialGalaxy.style.width = '300px';
+                initialGalaxy.style.height = '300px';
                 
-                // Navigate to worlds page after animation completes
+                // After initial growth, expand to mid-size
                 setTimeout(() => {
-                    window.location.href = 'worlds.html';
-                }, 1400); // Increased time for smoother transition
-            }, 500);
+                    initialGalaxy.style.width = '800px';
+                    initialGalaxy.style.height = '800px';
+                    
+                    // Start fading in the full black hole overlay
+                    setTimeout(() => {
+                        blackHoleOverlay.style.opacity = '1';
+                        
+                        // As full overlay becomes visible, fade out the initial galaxy
+                        setTimeout(() => {
+                            initialGalaxy.style.opacity = '0';
+                            
+                            // Navigate to worlds page after complete transition
+                            setTimeout(() => {
+                                window.location.href = 'worlds.html';
+                            }, 1600);
+                        }, 1000);
+                    }, 700);
+                }, 700);
+            }, 300);
         });
     }
     
@@ -122,12 +198,12 @@ function initTransitions() {
             // Fade out the current page
             const content = document.querySelector('.scene-container');
             content.style.opacity = '0';
-            content.style.transition = 'opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1)';
+            content.style.transition = 'opacity 1.8s cubic-bezier(0.22, 1, 0.36, 1)';
             
             // Navigate back to home after fade out
             setTimeout(() => {
                 window.location.href = 'index.html';
-            }, 700);
+            }, 1800);
         });
     }
 }
@@ -155,47 +231,67 @@ function handleIncomingTransition() {
                 flameOverlay.style.position = 'fixed';
                 flameOverlay.style.top = '0';
                 flameOverlay.style.left = '0';
-                flameOverlay.style.width = '100%';
-                flameOverlay.style.height = '100%';
+                flameOverlay.style.width = '100vw';
+                flameOverlay.style.height = '100vh';
                 flameOverlay.style.background = 'radial-gradient(circle at center, rgba(255,255,255,1) 0%, rgba(255,200,100,0.95) 10%, rgba(255,120,50,0.9) 20%, rgba(255,80,30,0.85) 40%, rgba(200,50,10,0.8) 60%, rgba(150,30,10,0.7) 100%)';
                 flameOverlay.style.opacity = '1';
                 flameOverlay.style.zIndex = '9999';
                 flameOverlay.style.pointerEvents = 'none';
-                flameOverlay.style.transition = 'opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1)'; // Faster fade-out
+                flameOverlay.style.transition = 'opacity 2.5s cubic-bezier(0.22, 1, 0.36, 1)';
                 document.body.appendChild(flameOverlay);
                 
                 // Make page content visible immediately but behind the overlay
                 content.style.opacity = '1';
                 
-                // Fade out flame overlay - faster fade out
+                // Fade out flame overlay - slower fade out
                 setTimeout(() => {
                     flameOverlay.style.opacity = '0';
                     
-                    // Remove overlay once animation is done - quicker removal
+                    // Remove overlay once animation is done
                     setTimeout(() => {
                         flameOverlay.remove();
-                    }, 600); // Faster removal time
-                }, 100);
+                    }, 2500);
+                }, 600);
             } else {
                 // Original transition
                 content.style.opacity = '0';
-                content.style.transition = 'opacity 1s cubic-bezier(0.22, 1, 0.36, 1)';
+                content.style.transition = 'opacity 1.5s cubic-bezier(0.22, 1, 0.36, 1)';
                 
                 setTimeout(() => {
                     content.style.opacity = '1';
-                }, 100);
+                }, 300);
             }
         } else if (transitionSource === 'galaxy') {
             // Add galaxy incoming transition
             const content = document.querySelector('.scene-container');
-            content.style.opacity = '0';
-            content.style.transform = 'scale(1.5)';
-            content.style.transition = 'opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)';
+            
+            // Create a full-screen black hole fade out effect
+            const blackHoleOverlay = document.createElement('div');
+            blackHoleOverlay.style.position = 'fixed';
+            blackHoleOverlay.style.top = '0';
+            blackHoleOverlay.style.left = '0';
+            blackHoleOverlay.style.width = '100vw';
+            blackHoleOverlay.style.height = '100vh';
+            blackHoleOverlay.style.background = 'radial-gradient(circle at center, rgba(100,50,200,0.9) 0%, rgba(70,30,150,0.85) 20%, rgba(40,10,100,0.8) 40%, rgba(20,5,60,0.7) 70%, rgba(10,2,30,0.6) 100%)';
+            blackHoleOverlay.style.opacity = '1';
+            blackHoleOverlay.style.zIndex = '9999';
+            blackHoleOverlay.style.pointerEvents = 'none';
+            blackHoleOverlay.style.transition = 'opacity 2s cubic-bezier(0.19, 1, 0.22, 1)';
+            document.body.appendChild(blackHoleOverlay);
+            
+            content.style.opacity = '1';
+            content.style.transform = 'scale(1.2)';
+            content.style.transition = 'transform 2.2s cubic-bezier(0.22, 1, 0.36, 1)';
             
             setTimeout(() => {
-                content.style.opacity = '1';
+                blackHoleOverlay.style.opacity = '0';
                 content.style.transform = 'scale(1)';
-            }, 100);
+                
+                // Remove overlay once animation is done
+                setTimeout(() => {
+                    blackHoleOverlay.remove();
+                }, 2000);
+            }, 500);
         }
     }
 }

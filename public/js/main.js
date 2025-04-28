@@ -5,6 +5,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 let scene, camera, renderer, controls;
 let starParticles, backgroundSphere, sparkles, pulsingStars;
 let mouseX = 0, mouseY = 0;
+let isDragging = false;
 
 // Initialize the Three.js scene
 function init() {
@@ -15,21 +16,37 @@ function init() {
     
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
-    document.getElementById('three-container').appendChild(renderer.domElement);
+    renderer.setClearColor(0x000000, 0);
+    const threeContainer = document.getElementById('three-container');
+    threeContainer.appendChild(renderer.domElement);
     
     // Set camera position
     camera.position.z = 1000;
     
-    // Create orbit controls
+    // Set custom cursor for the scene
+    renderer.domElement.style.cursor = `url('images/cat_cursor.svg'), auto`;
+    
+    // Create orbit controls with limitations
     controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
-    controls.rotateSpeed = 0.1;
-    controls.enableZoom = true;
-    controls.zoomSpeed = 0.5;
-    controls.minDistance = 500;
-    controls.maxDistance = 1500;
-    controls.enablePan = false;
+    controls.screenSpacePanning = false;
+    controls.minDistance = 50;
+    controls.maxDistance = 150;
+    controls.maxPolarAngle = Math.PI;
+    controls.rotateSpeed = 0.5;
+    
+    // Debug controls status
+    console.log("OrbitControls initialized:", controls);
+    
+    // Add custom cursor change when grabbing/rotating
+    controls.addEventListener('start', function() {
+        renderer.domElement.style.cursor = `url('images/cat_paw_grabbing.svg'), grabbing`;
+    });
+    
+    controls.addEventListener('end', function() {
+        renderer.domElement.style.cursor = `url('images/cat_cursor.svg'), auto`;
+    });
     
     // Create background elements
     createBackgroundSphere();
@@ -50,8 +67,102 @@ function init() {
     window.addEventListener('resize', onWindowResize);
     document.addEventListener('mousemove', onMouseMove);
     
+    // Add custom cursor when hovering over the background
+    threeContainer.style.cursor = 'none';
+    threeContainer.addEventListener('mousedown', () => {
+        threeContainer.style.cursor = 'none';
+        document.body.classList.add('dragging');
+        isDragging = true;
+        
+        // Update to astronaut glove grabbing cursor
+        const cursor = document.getElementById('custom-cursor');
+        if (cursor) {
+            cursor.style.backgroundImage = "url('public/images/glove_grab-Photoroom.png')";
+            // Scale effect gives impression of hand grabbing
+            cursor.style.transform = `rotate(${mouseX * 5}deg) scale(0.9)`;
+        }
+    });
+    
+    document.addEventListener('mouseup', () => {
+        threeContainer.style.cursor = 'none';
+        document.body.classList.remove('dragging');
+        isDragging = false;
+        
+        // Reset to default astronaut glove cursor
+        const cursor = document.getElementById('custom-cursor');
+        if (cursor) {
+            cursor.style.backgroundImage = "url('public/images/glove_open-Photoroom.png')";
+            cursor.style.transform = `rotate(${mouseX * 5}deg)`;
+        }
+    });
+    
+    // Add initial interactive tutorial
+    showInteractionTutorial();
+    
+    // Ensure clicks on foreground don't affect background
+    setupInteractiveElements();
+    
     // Start animation loop
     animate();
+}
+
+// Setup interactive elements and prevent event propagation
+function setupInteractiveElements() {
+    const foregroundElements = document.querySelector('.foreground-elements');
+    
+    // Make sure interactive elements prevent events from reaching Three.js canvas
+    const interactiveSelectors = [
+        '.rocket-container', 
+        '.galaxy-container',
+        '.welcome-text',
+        '.social-icon',
+        '.back-link'
+    ];
+    
+    if (foregroundElements) {
+        // Prevent mouse events on entire foreground container from reaching Three.js
+        foregroundElements.addEventListener('mousedown', (e) => {
+            // Check if the target is a non-interactive element
+            if (e.target === foregroundElements) {
+                e.stopPropagation();
+            }
+        });
+        
+        // Setup event prevention for each interactive element
+        interactiveSelectors.forEach(selector => {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(element => {
+                element.addEventListener('mousedown', (e) => {
+                    e.stopPropagation(); // Prevent the event from reaching the Three.js canvas
+                });
+            });
+        });
+    }
+    
+    // Setup navigation for rocket and galaxy
+    setupPageLinks();
+}
+
+// Setup page navigation links
+function setupPageLinks() {
+    const rocketContainer = document.getElementById('rocket-social');
+    const galaxyContainer = document.getElementById('galaxy-worlds');
+    
+    if (rocketContainer) {
+        rocketContainer.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.href = 'social.html';
+        });
+    }
+    
+    if (galaxyContainer) {
+        galaxyContainer.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.href = 'worlds.html';
+        });
+    }
 }
 
 // Create background sphere
@@ -259,19 +370,22 @@ function onWindowResize() {
 
 // Handle mouse movement
 function onMouseMove(event) {
+    // Only update mouseX and mouseY for custom cursor movement
     mouseX = (event.clientX / window.innerWidth) * 2 - 1;
     mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
     
-    // Update cat cursor position and rotation
+    // Update astronaut hand cursor position with improved precision tracking
     const cursor = document.getElementById('custom-cursor');
     if (cursor) {
-        cursor.style.left = event.clientX + 'px';
-        cursor.style.top = event.clientY + 'px';
-        
-        // Slightly rotate cursor based on mouse movement
-        const rotateX = mouseY * 15;
-        const rotateY = mouseX * -15;
-        cursor.style.transform = `rotate(${rotateY}deg)`;
+        // Use requestAnimationFrame for smoother tracking
+        requestAnimationFrame(() => {
+            cursor.style.left = `${event.clientX}px`;
+            cursor.style.top = `${event.clientY}px`;
+            
+            // Subtle rotation based on mouse movement for more dynamic feel
+            const rotateZ = mouseX * 5; // Less rotation for the astronaut hand
+            cursor.style.transform = `rotate(${rotateZ}deg)`;
+        });
     }
 }
 
@@ -279,8 +393,8 @@ function onMouseMove(event) {
 function animate() {
     requestAnimationFrame(animate);
     
-    // Rotate star particles with different speeds for parallax effect
-    if (starParticles) {
+    // Very subtle auto-rotation of star particles when not being controlled
+    if (starParticles && !controls.isActive) {
         starParticles.rotation.y += 0.0001;
         starParticles.rotation.x += 0.00005;
     }
@@ -309,13 +423,10 @@ function animate() {
         });
     }
     
-    // Update controls
-    controls.update();
-    
-    // Slightly move camera based on mouse position
-    camera.position.x += (mouseX * 5 - camera.position.x) * 0.01;
-    camera.position.y += (mouseY * 5 - camera.position.y) * 0.01;
-    camera.lookAt(scene.position);
+    // Update controls - this is what makes the OrbitControls work
+    if (controls) {
+        controls.update();
+    }
     
     // Render scene
     renderer.render(scene, camera);
@@ -355,13 +466,6 @@ function initInteractiveElements() {
                 rocket.style.filter = '';
             }
         });
-        
-        rocketContainer.addEventListener('click', () => {
-            rocketContainer.style.transform = 'translate(200%, -50%) scale(0.5)';
-            setTimeout(() => {
-                window.location.href = 'social.html';
-            }, 1000);
-        });
     }
     
     if (galaxyContainer) {
@@ -381,14 +485,74 @@ function initInteractiveElements() {
                 galaxy.style.opacity = '';
             }
         });
-        
-        galaxyContainer.addEventListener('click', () => {
-            camera.position.z = 2000;
-            setTimeout(() => {
-                window.location.href = 'worlds.html';
-            }, 1000);
-        });
     }
+}
+
+// Show an initial tutorial overlay to educate users about the interaction
+function showInteractionTutorial() {
+    // Only show tutorial if it hasn't been shown before
+    if (localStorage.getItem('spaceTutorialShown')) {
+        return;
+    }
+    
+    // Only show on index.html page
+    const currentPath = window.location.pathname;
+    const isIndexPage = currentPath === '/' || 
+                         currentPath === '/index.html' || 
+                         currentPath.endsWith('/index.html') ||
+                         currentPath === '';
+    
+    // Skip if not on index page
+    if (!isIndexPage) {
+        return;
+    }
+    
+    // Create tutorial overlay
+    const tutorial = document.createElement('div');
+    tutorial.className = 'interaction-tutorial';
+    tutorial.innerHTML = `
+        <div class="tutorial-content">
+            <h3>Interactive Space Environment</h3>
+            <div class="tutorial-step">
+                <div class="tutorial-icon">✋</div>
+                <p>Click and drag anywhere to <strong>rotate</strong> the starfield</p>
+            </div>
+            <div class="tutorial-step">
+                <div class="tutorial-icon">🔍</div>
+                <p>Use your mouse wheel to <strong>zoom</strong> in and out</p>
+            </div>
+            <div class="tutorial-step">
+                <div class="tutorial-icon">🚀</div>
+                <p>Click the rocket or galaxy to navigate</p>
+            </div>
+            <button id="tutorial-close">Got it!</button>
+        </div>
+    `;
+    document.body.appendChild(tutorial);
+    
+    // Add click handler to close
+    document.getElementById('tutorial-close').addEventListener('click', () => {
+        tutorial.classList.add('closing');
+        setTimeout(() => {
+            if (tutorial.parentNode) {
+                tutorial.parentNode.removeChild(tutorial);
+            }
+            localStorage.setItem('spaceTutorialShown', 'true');
+        }, 500);
+    });
+    
+    // Auto-close after 15 seconds
+    setTimeout(() => {
+        if (tutorial.parentNode && !tutorial.classList.contains('closing')) {
+            tutorial.classList.add('closing');
+            setTimeout(() => {
+                if (tutorial.parentNode) {
+                    tutorial.parentNode.removeChild(tutorial);
+                }
+                localStorage.setItem('spaceTutorialShown', 'true');
+            }, 500);
+        }
+    }, 15000);
 }
 
 // Initialize everything when DOM is loaded
@@ -396,19 +560,86 @@ document.addEventListener('DOMContentLoaded', () => {
     init();
     initInteractiveElements();
     
-    // Ensure cat cursor is visible
+    // Ensure cat cursor is visible and properly positioned initially
     const cursor = document.getElementById('custom-cursor');
     if (cursor) {
         cursor.style.display = 'block';
         cursor.style.zIndex = '9999';
+        
+        // Set initial position to center of screen to avoid flicker
+        cursor.style.left = `${window.innerWidth / 2}px`;
+        cursor.style.top = `${window.innerHeight / 2}px`;
+        
+        // Force cursor update on first mouse move
+        document.addEventListener('mousemove', function initialMove(e) {
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+            document.removeEventListener('mousemove', initialMove);
+        }, { once: true });
     }
     
     // Hide cursor when mouse leaves window
     document.addEventListener('mouseleave', () => {
-        document.getElementById('custom-cursor').style.display = 'none';
+        const cursor = document.getElementById('custom-cursor');
+        if (cursor) cursor.style.opacity = '0';
     });
     
     document.addEventListener('mouseenter', () => {
-        document.getElementById('custom-cursor').style.display = 'block';
+        const cursor = document.getElementById('custom-cursor');
+        if (cursor) cursor.style.opacity = '1';
     });
-}); 
+    
+    // Only show custom cursor when not interacting with the background
+    const threeContainer = document.getElementById('three-container');
+    threeContainer.addEventListener('mousedown', () => {
+        const cursor = document.getElementById('custom-cursor');
+        if (cursor) {
+            // Always keep the grabbing cursor visible during dragging
+            cursor.style.opacity = '1';
+            cursor.style.backgroundImage = "url('public/images/glove_grab-Photoroom.png')";
+            cursor.style.transform = `rotate(${mouseX * 5}deg) scale(0.9)`; // Scale down less for astronaut hand
+        }
+    });
+    
+    threeContainer.addEventListener('mouseup', () => {
+        const cursor = document.getElementById('custom-cursor');
+        if (cursor) {
+            cursor.style.opacity = '1';
+            cursor.style.backgroundImage = "url('public/images/glove_open-Photoroom.png')";
+            cursor.style.transform = `rotate(${mouseX * 5}deg)`;
+        }
+    });
+    
+    // Show initial rotating space message
+    showInitialRotateMessage();
+});
+
+// Show a brief initial message suggesting to rotate the space
+function showInitialRotateMessage() {
+    // Check if we're on the index page
+    const path = window.location.pathname;
+    const isIndexPage = path === '/' || path === '/index.html' || path.endsWith('/index.html') || path === '';
+    if (!isIndexPage) return;
+
+    const rotateMessage = document.createElement('div');
+    rotateMessage.className = 'initial-rotate-message';
+    
+    // Text-only version without the image
+    rotateMessage.innerHTML = `
+        <span class="main-instruction">Try rotating the space!</span>
+        <span class="sub-instruction">Grab and drag + scroll to zoom in/out.</span>
+    `;
+    
+    document.body.appendChild(rotateMessage);
+    
+    setTimeout(() => {
+        rotateMessage.classList.add('visible');
+    }, 1000);
+    
+    setTimeout(() => {
+        rotateMessage.classList.remove('visible');
+        setTimeout(() => {
+            document.body.removeChild(rotateMessage);
+        }, 1000);
+    }, 4000);
+} 
